@@ -29,7 +29,7 @@
           "data": ""
         },
         "rowObjects": {
-          "data": "{\n  \"id\": {{ \"R\" + Date.now() }},\n  \"issue_id\": {{ appsmith.URL.queryParams.id }},\n  \"responder_id\": {{ Select_ActingUser.selectedOptionValue }},\n  \"reply_text\": {{ Input_PICReply.text }},\n  \"reply_date\": {{ Utils.todayISO() }}\n}\n"
+          "data": "{\n  \"id\": {{ \"R\" + Date.now() }},\n  \"issue_id\": {{ appsmith.URL.queryParams.id }},\n  \"responder_id\": {{ Acting_User.selectedOptionValue }},\n  \"reply_text\": {{ Input_PICReply.text }},\n  \"reply_date\": {{ Utils.todayISO() }}\n}\n"
         },
         "sheetName": {
           "data": "responses"

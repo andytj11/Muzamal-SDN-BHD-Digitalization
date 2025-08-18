@@ -1,19 +1,15 @@
 {
-  "animateLoading": true,
+  "animateLoading": false,
   "borderColor": "#71717a",
   "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
   "borderWidth": "1",
-  "bottomRow": 16,
-  "disableLink": true,
+  "bottomRow": 21,
   "dynamicBindingPathList": [
     {
       "key": "truncateButtonColor"
     },
     {
       "key": "borderRadius"
-    },
-    {
-      "key": "text"
     }
   ],
   "dynamicHeight": "AUTO_HEIGHT",
@@ -23,33 +19,33 @@
   "fontStyle": "BOLD",
   "isLoading": false,
   "isVisible": true,
-  "key": "ufrq03asbr",
-  "leftColumn": 38,
+  "key": "2l3kskb1cl",
+  "leftColumn": 18,
   "maxDynamicHeight": 9000,
   "minDynamicHeight": 4,
   "minWidth": 450,
-  "mobileBottomRow": 9,
-  "mobileLeftColumn": 24,
-  "mobileRightColumn": 40,
-  "mobileTopRow": 5,
+  "mobileBottomRow": 14,
+  "mobileLeftColumn": 1,
+  "mobileRightColumn": 17,
+  "mobileTopRow": 10,
   "needsErrorInfo": false,
-  "originalBottomRow": 16,
-  "originalTopRow": 11,
+  "originalBottomRow": 21,
+  "originalTopRow": 17,
   "overflow": "NONE",
-  "parentColumnSpace": 10.25,
+  "parentColumnSpace": 17.9375,
   "parentId": "0",
   "parentRowSpace": 10,
   "renderMode": "CANVAS",
   "responsiveBehavior": "fill",
   "rightColumn": 46,
   "shouldTruncate": false,
-  "text": "Effective Date: \n{{ Utils.todayISO() }}",
+  "text": "Observation Form",
   "textAlign": "CENTER",
   "textColor": "#71717a",
-  "topRow": 11,
+  "topRow": 17,
   "truncateButtonColor": "{{appsmith.theme.colors.primaryColor}}",
   "type": "TEXT_WIDGET",
   "version": 1,
-  "widgetId": "h9zel6893r",
-  "widgetName": "Date_Today"
+  "widgetId": "txxdkazkz5",
+  "widgetName": "Observation_Form"
 }

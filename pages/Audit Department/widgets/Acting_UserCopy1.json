@@ -2,9 +2,9 @@
   "accentColor": "{{appsmith.theme.colors.primaryColor}}",
   "animateLoading": true,
   "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
-  "bottomRow": 44,
+  "bottomRow": 47,
   "boxShadow": "0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)",
-  "defaultOptionValue": "{{ ((options, serverSideFiltering) => (  String(Users_GetAll.data?.[0]?.id) ))(Select_ActingUser.options, Select_ActingUser.serverSideFiltering) }}",
+  "defaultOptionValue": "",
   "dynamicBindingPathList": [
     {
       "key": "accentColor"
@@ -14,9 +14,6 @@
     },
     {
       "key": "sourceData"
-    },
-    {
-      "key": "defaultOptionValue"
     },
     {
       "key": "labelTextColor"
@@ -30,19 +27,19 @@
   ],
   "dynamicTriggerPathList": [],
   "isDisabled": false,
-  "isFilterable": true,
+  "isFilterable": false,
   "isLoading": false,
-  "isRequired": false,
+  "isRequired": true,
   "isVisible": true,
   "key": "1wmbvhbzxw",
   "labelAlignment": "left",
   "labelPosition": "Top",
   "labelStyle": "",
-  "labelText": "Acting User",
+  "labelText": "",
   "labelTextColor": "{{appsmith.theme.colors.primaryColor}}",
   "labelTextSize": "0.875rem",
   "labelWidth": 5,
-  "leftColumn": 48,
+  "leftColumn": 24,
   "maxDynamicHeight": 9000,
   "minDynamicHeight": 4,
   "minWidth": 450,
@@ -53,20 +50,20 @@
   "needsErrorInfo": false,
   "optionLabel": "label",
   "optionValue": "value",
-  "originalBottomRow": 44,
-  "originalTopRow": 37,
+  "originalBottomRow": 47,
+  "originalTopRow": 43,
   "parentColumnSpace": 10.25,
   "parentId": "0",
   "parentRowSpace": 10,
   "placeholderText": "Select option",
   "renderMode": "CANVAS",
   "responsiveBehavior": "fill",
-  "rightColumn": 64,
+  "rightColumn": 46,
   "serverSideFiltering": false,
   "sourceData": "{{ \n  Users_GetAll.data\n    .map(u => ({ label: u.name + \" (\" + u.role + \")\", value: String(u.id) }))\n}}\n",
-  "topRow": 37,
+  "topRow": 43,
   "type": "SELECT_WIDGET",
   "version": 1,
-  "widgetId": "n24dzs6j0z",
-  "widgetName": "Select_ActingUser"
+  "widgetId": "5wbin25vrn",
+  "widgetName": "Acting_UserCopy1"
 }

@@ -26,7 +26,7 @@
   "isDisabled": false,
   "isFilterable": false,
   "isLoading": false,
-  "isRequired": false,
+  "isRequired": true,
   "isVisible": true,
   "key": "1wmbvhbzxw",
   "labelAlignment": "left",
@@ -62,5 +62,5 @@
   "type": "SELECT_WIDGET",
   "version": 1,
   "widgetId": "jsw7s9s0zh",
-  "widgetName": "Select_Dept"
+  "widgetName": "Department"
 }

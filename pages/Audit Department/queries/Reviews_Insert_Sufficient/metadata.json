@@ -29,7 +29,7 @@
           "data": ""
         },
         "rowObjects": {
-          "data": "{\n  \"id\": {{ \"V\" + Date.now() }},\n  \"issue_id\": {{ appsmith.URL.queryParams.id }},\n  \"reviewer_id\": {{ Select_ActingUser.selectedOptionValue }},\n  \"decision\": \"Sufficient\",\n  \"comments\": {{ Input_ReviewComments.text }},\n  \"decided_at\": {{ Utils.todayISO() }}\n}\n"
+          "data": "{\n  \"id\": {{ \"V\" + Date.now() }},\n  \"issue_id\": {{ appsmith.URL.queryParams.id }},\n  \"reviewer_id\": {{ Acting_User.selectedOptionValue }},\n  \"decision\": \"Sufficient\",\n  \"comments\": {{ Input_ReviewComments.text }},\n  \"decided_at\": {{ Utils.todayISO() }}\n}\n"
         },
         "sheetName": {
           "data": "reviews"

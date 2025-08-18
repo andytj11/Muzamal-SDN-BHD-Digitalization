@@ -1,7 +1,7 @@
 {
   "animateLoading": true,
   "borderRadius": "1.5rem",
-  "bottomRow": 10,
+  "bottomRow": 11,
   "boxShadow": "0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)",
   "defaultImage": "https://my.joblum.com/uploads/34/33394.jpg",
   "dynamicBindingPathList": [],
@@ -31,5 +31,5 @@
   "type": "IMAGE_WIDGET",
   "version": 1,
   "widgetId": "qmgdjk5bby",
-  "widgetName": "Image1"
+  "widgetName": "Muza_Mal_Logo"
 }
