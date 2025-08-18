@@ -21,7 +21,7 @@
   "firstDayOfWeek": 0,
   "isDisabled": false,
   "isLoading": false,
-  "isRequired": false,
+  "isRequired": true,
   "isVisible": true,
   "key": "z02b0nu6e6",
   "label": "Date of Findings",
@@ -31,9 +31,9 @@
   "labelTextSize": "0.875rem",
   "labelWidth": 5,
   "leftColumn": 18,
-  "maxDate": "2025-12-01T00:00:00.000+08:00",
+  "maxDate": "2025-12-31T23:59:00.000+08:00",
   "maxDynamicHeight": 9000,
-  "minDate": "2000-01-01T00:00:00.000+08:00",
+  "minDate": "2025-08-18T14:28:30.3030+08:00",
   "minDynamicHeight": 4,
   "minWidth": 450,
   "mobileBottomRow": 20,
@@ -55,5 +55,5 @@
   "type": "DATE_PICKER_WIDGET2",
   "version": 2,
   "widgetId": "8pw3tdj4ez",
-  "widgetName": "Date_of_Findings"
+  "widgetName": "DatePicker_SubmittedDate"
 }

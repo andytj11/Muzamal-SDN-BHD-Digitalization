@@ -9,13 +9,16 @@
     },
     {
       "key": "borderRadius"
+    },
+    {
+      "key": "text"
     }
   ],
   "dynamicHeight": "AUTO_HEIGHT",
   "dynamicTriggerPathList": [],
   "fontFamily": "Nunito Sans",
   "fontSize": "0.875rem",
-  "fontStyle": "",
+  "fontStyle": "BOLD",
   "isLoading": false,
   "isVisible": true,
   "key": "2l3kskb1cl",
@@ -36,9 +39,9 @@
   "responsiveBehavior": "fill",
   "rightColumn": 62,
   "shouldTruncate": false,
-  "text": "Observation Plan reply due date: \n(date)",
+  "text": "Observation Plan reply due date: \n{{ Utils.addWorkingDays(DatePicker_SubmittedDate.selectedDate, 7, Holidays_GetAll.data) }}",
   "textAlign": "CENTER",
-  "textColor": "#71717a",
+  "textColor": "#b33d0a",
   "topRow": 0,
   "truncateButtonColor": "{{appsmith.theme.colors.primaryColor}}",
   "type": "TEXT_WIDGET",

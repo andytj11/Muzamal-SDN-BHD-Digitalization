@@ -58,5 +58,17 @@ export default {
   rowIndexById(rows, idField, idValue) {
     const i = (rows || []).findIndex(r => String(r[idField]) === String(idValue));
     return i >= 0 ? i + 2 : null; // +2 because header row is 1
+  },
+	
+	addDays(start, n){
+    const d = new Date(start || new Date());
+    d.setDate(d.getDate() + Number(n || 0));
+    return d.toISOString().slice(0,10);
+  },
+  genObservationNo(){
+    const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    const letter = letters[Math.floor(Math.random() * letters.length)];
+    const num = Math.floor(Math.random() * 1000).toString().padStart(3, "0");
+    return num + letter; // e.g., 415K
   }
 }
