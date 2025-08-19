@@ -39,7 +39,7 @@
   "responsiveBehavior": "fill",
   "rightColumn": 62,
   "shouldTruncate": false,
-  "text": "Observation Plan reply due date: \n{{ Utils.addWorkingDays(DatePicker_SubmittedDate.selectedDate, 7, Holidays_GetAll.data) }}",
+  "text": "Observation Plan reply due date: \n{{ Utils.addWorkingDays(DateOfFindings.selectedDate, 7, Holidays_GetAll.data) }}",
   "textAlign": "CENTER",
   "textColor": "#b33d0a",
   "topRow": 0,

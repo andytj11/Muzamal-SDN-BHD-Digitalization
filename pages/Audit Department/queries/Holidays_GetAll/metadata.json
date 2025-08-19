@@ -15,7 +15,7 @@
         },
         "pagination": {
           "data": {
-            "limit": "20",
+            "limit": "500",
             "offset": "0"
           }
         },
@@ -32,7 +32,7 @@
           "data": "holidays"
         },
         "sheetUrl": {
-          "data": "https://docs.google.com/spreadsheets/d/1rQShK0AWzpID6eZ2tiTGibrVDmyLSC2q6jMpbA8iUkA/edit"
+          "data": "https://docs.google.com/spreadsheets/d/1p9qzLiq77vTqP-EGtmptV1VZiqKRWg75Slm-gUfDTDQ/edit"
         },
         "smartSubstitution": {
           "data": true
@@ -40,7 +40,7 @@
         "sortBy": {
           "data": [
             {
-              "column": "",
+              "column": "holiday_date",
               "order": "Ascending"
             }
           ]

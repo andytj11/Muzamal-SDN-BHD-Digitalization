@@ -32,7 +32,7 @@
           "data": "users"
         },
         "sheetUrl": {
-          "data": "https://docs.google.com/spreadsheets/d/1rQShK0AWzpID6eZ2tiTGibrVDmyLSC2q6jMpbA8iUkA/edit"
+          "data": "https://docs.google.com/spreadsheets/d/1p9qzLiq77vTqP-EGtmptV1VZiqKRWg75Slm-gUfDTDQ/edit"
         },
         "smartSubstitution": {
           "data": true
@@ -40,7 +40,7 @@
         "sortBy": {
           "data": [
             {
-              "column": "id",
+              "column": "name",
               "order": "Ascending"
             }
           ]
@@ -72,7 +72,7 @@
     "dynamicBindingPathList": [],
     "name": "Users_GetAll",
     "pageId": "Audit Department",
-    "runBehaviour": "AUTOMATIC",
+    "runBehaviour": "MANUAL",
     "userSetOnLoad": false
   }
 }

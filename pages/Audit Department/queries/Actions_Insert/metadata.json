@@ -29,7 +29,7 @@
           "data": ""
         },
         "rowObjects": {
-          "data": "{\n  \"id\": {{ \"A\" + Date.now() }},\n  \"issue_id\": {{ appsmith.URL.queryParams.id }},\n  \"assignee_id\": {{ Select_Assignee.selectedOptionValue || Person_In_Charge.selectedOptionValue }},\n  \"target_date\": {{ Utils.toISODate(DatePicker_TargetDate.selectedDate) }},\n  \"evidence_url\": \"\",\n  \"evidence_uploaded_at\": \"\",\n  \"completed_at\": \"\"\n}\n"
+          "data": "{\n  \"id\": {{ \"A\" + Date.now() }},\n  \"issue_id\": {{ appsmith.URL.queryParams.id }},\n  \"assignee_id\": {{ Select_Assignee.selectedOptionValue || AssignedToSelect.selectedOptionValue }},\n  \"target_date\": {{ Utils.toISODate(DatePicker_TargetDate.selectedDate) }},\n  \"evidence_url\": \"\",\n  \"evidence_uploaded_at\": \"\",\n  \"completed_at\": \"\"\n}\n"
         },
         "sheetName": {
           "data": "actions"
