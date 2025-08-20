@@ -2,7 +2,7 @@
   "accentColor": "{{appsmith.theme.colors.primaryColor}}",
   "animateLoading": true,
   "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
-  "bottomRow": 61,
+  "bottomRow": 62,
   "boxShadow": "0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)",
   "defaultOptionValue": "",
   "dynamicBindingPathList": [
@@ -25,12 +25,12 @@
       "key": "sourceData"
     },
     {
-      "key": "onDropdownOpen"
+      "key": "onOptionChange"
     }
   ],
   "dynamicTriggerPathList": [
     {
-      "key": "onDropdownOpen"
+      "key": "onOptionChange"
     }
   ],
   "isDisabled": false,
@@ -41,7 +41,6 @@
   "key": "1wmbvhbzxw",
   "labelAlignment": "left",
   "labelPosition": "Top",
-  "labelStyle": "",
   "labelText": "",
   "labelTextColor": "{{appsmith.theme.colors.primaryColor}}",
   "labelTextSize": "0.875rem",
@@ -50,16 +49,16 @@
   "maxDynamicHeight": 9000,
   "minDynamicHeight": 4,
   "minWidth": 450,
-  "mobileBottomRow": 36,
-  "mobileLeftColumn": 22,
-  "mobileRightColumn": 42,
-  "mobileTopRow": 29,
+  "mobileBottomRow": 28,
+  "mobileLeftColumn": 1,
+  "mobileRightColumn": 21,
+  "mobileTopRow": 21,
   "needsErrorInfo": false,
-  "onDropdownOpen": "{{ Users_Issuers.run({ role: \"issuer\" }) }}",
+  "onOptionChange": "{{ Users_GetById.run({ id: AssignedToSelect.selectedOptionValue }) }}",
   "optionLabel": "name",
   "optionValue": "id",
-  "originalBottomRow": 61,
-  "originalTopRow": 57,
+  "originalBottomRow": 62,
+  "originalTopRow": 58,
   "parentColumnSpace": 10.25,
   "parentId": "0",
   "parentRowSpace": 10,
@@ -68,10 +67,10 @@
   "responsiveBehavior": "fill",
   "rightColumn": 26,
   "serverSideFiltering": false,
-  "sourceData": "{{ Users_Issuers.data }}",
-  "topRow": 57,
+  "sourceData": "{{ Users_ByDepartment.data.filter(u => u.role === \"pic\") }}",
+  "topRow": 58,
   "type": "SELECT_WIDGET",
   "version": 1,
-  "widgetId": "n24dzs6j0z",
-  "widgetName": "IssuedBySelect"
+  "widgetId": "cnyt7vc9ev",
+  "widgetName": "AssignedToSelect"
 }

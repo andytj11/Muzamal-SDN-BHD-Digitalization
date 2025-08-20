@@ -78,7 +78,7 @@
     ],
     "name": "Users_ByDepartment",
     "pageId": "Reviewer Form",
-    "runBehaviour": "MANUAL",
+    "runBehaviour": "AUTOMATIC",
     "userSetOnLoad": false
   }
 }
