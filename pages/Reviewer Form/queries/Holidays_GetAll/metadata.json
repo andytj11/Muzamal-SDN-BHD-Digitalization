@@ -72,7 +72,7 @@
     "dynamicBindingPathList": [],
     "name": "Holidays_GetAll",
     "pageId": "Reviewer Form",
-    "runBehaviour": "AUTOMATIC",
+    "runBehaviour": "MANUAL",
     "userSetOnLoad": false
   }
 }

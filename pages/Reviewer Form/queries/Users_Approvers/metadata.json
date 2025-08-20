@@ -74,7 +74,7 @@
     "dynamicBindingPathList": [],
     "name": "Users_Approvers",
     "pageId": "Reviewer Form",
-    "runBehaviour": "AUTOMATIC",
+    "runBehaviour": "MANUAL",
     "userSetOnLoad": false
   }
 }

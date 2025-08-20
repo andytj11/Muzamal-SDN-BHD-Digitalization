@@ -15,9 +15,11 @@ export default {
 
     if (EvidenceUpload.files?.length) {
 			await Evidence_Upload.run();
-			const link = Evidence_Upload.data?.link;
-			if (!link) { showAlert('Evidence upload failed', 'error'); return; }
-			await storeValue('evidence_url', link);
+			if (!Evidence_Upload.data?.ok) {
+				showAlert("Upload failed: " + (Evidence_Upload.data?.message || "Unknown"), "error");
+				return;
+			}
+			await storeValue("evidence_url", Evidence_Upload.data.link);
 		}
 
     await ObservationForms_Insert.run();

@@ -1,7 +1,7 @@
 {
   "animateLoading": true,
   "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
-  "bottomRow": 51,
+  "bottomRow": 43,
   "dynamicBindingPathList": [
     {
       "key": "truncateButtonColor"
@@ -30,8 +30,8 @@
   "mobileRightColumn": 34,
   "mobileTopRow": 39,
   "needsErrorInfo": false,
-  "originalBottomRow": 51,
-  "originalTopRow": 47,
+  "originalBottomRow": 43,
+  "originalTopRow": 39,
   "overflow": "NONE",
   "parentColumnSpace": 17.9375,
   "parentId": "0",
@@ -40,13 +40,13 @@
   "responsiveBehavior": "fill",
   "rightColumn": 24,
   "shouldTruncate": false,
-  "text": "Approved By:",
+  "text": "Issued By:",
   "textAlign": "LEFT",
   "textColor": "{{appsmith.theme.colors.primaryColor}}",
-  "topRow": 47,
+  "topRow": 39,
   "truncateButtonColor": "{{appsmith.theme.colors.primaryColor}}",
   "type": "TEXT_WIDGET",
   "version": 1,
-  "widgetId": "hiznflujun",
-  "widgetName": "Approved_By"
+  "widgetId": "fx8kkyeehu",
+  "widgetName": "IssuedBy"
 }

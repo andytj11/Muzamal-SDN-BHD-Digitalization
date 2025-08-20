@@ -2,14 +2,14 @@
   "animateLoading": true,
   "backgroundColor": "white",
   "borderColor": "#E0DEDE",
-  "borderRadius": "0.375rem",
+  "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
   "borderWidth": "1",
-  "bottomRow": 35,
-  "boxShadow": "0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)",
+  "bottomRow": 103,
+  "boxShadow": "{{appsmith.theme.boxShadow.appBoxShadow}}",
   "children": [
     {
       "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
-      "bottomRow": 70,
+      "bottomRow": 260,
       "boxShadow": "{{appsmith.theme.boxShadow.appBoxShadow}}",
       "canExtend": false,
       "containerStyle": "none",
@@ -26,7 +26,7 @@
       "flexLayers": [],
       "isLoading": false,
       "isVisible": true,
-      "key": "8q8m4xjp70",
+      "key": "86wrqi93dz",
       "leftColumn": 0,
       "maxDynamicHeight": 9000,
       "minDynamicHeight": 4,
@@ -38,7 +38,7 @@
       "mobileTopRow": 0,
       "needsErrorInfo": false,
       "parentColumnSpace": 1,
-      "parentId": "x7jevjqg3v",
+      "parentId": "tq6h7ufmh1",
       "parentRowSpace": 1,
       "renderMode": "CANVAS",
       "responsiveBehavior": "fill",
@@ -46,28 +46,34 @@
       "topRow": 0,
       "type": "CANVAS_WIDGET",
       "version": 1,
-      "widgetId": "mic4dmk8bz",
-      "widgetName": "Canvas1"
+      "widgetId": "vk2nex3s6p",
+      "widgetName": "Canvas2"
     }
   ],
-  "dynamicBindingPathList": [],
-  "dynamicHeight": "AUTO_HEIGHT_WITH_LIMITS",
-  "dynamicTriggerPathList": [],
+  "dynamicBindingPathList": [
+    {
+      "key": "borderRadius"
+    },
+    {
+      "key": "boxShadow"
+    }
+  ],
+  "dynamicHeight": "AUTO_HEIGHT",
   "flexVerticalAlignment": "stretch",
   "isCanvas": true,
   "isLoading": false,
   "isVisible": true,
-  "key": "swhhbho0ec",
-  "leftColumn": 27,
-  "maxDynamicHeight": 8,
-  "minDynamicHeight": 7,
-  "mobileBottomRow": 42,
-  "mobileLeftColumn": 27,
-  "mobileRightColumn": 49,
-  "mobileTopRow": 28,
+  "key": "v5btlajuxx",
+  "leftColumn": 18,
+  "maxDynamicHeight": 9000,
+  "minDynamicHeight": 10,
+  "mobileBottomRow": 92,
+  "mobileLeftColumn": 18,
+  "mobileRightColumn": 40,
+  "mobileTopRow": 78,
   "needsErrorInfo": false,
-  "originalBottomRow": 35,
-  "originalTopRow": 28,
+  "originalBottomRow": 103,
+  "originalTopRow": 77,
   "parentColumnSpace": 17.9375,
   "parentId": "0",
   "parentRowSpace": 10,
@@ -76,8 +82,8 @@
   "responsiveBehavior": "fill",
   "rightColumn": 46,
   "shouldScrollContents": true,
-  "topRow": 28,
+  "topRow": 77,
   "type": "STATBOX_WIDGET",
-  "widgetId": "x7jevjqg3v",
-  "widgetName": "Reply_Due_Form"
+  "widgetId": "tq6h7ufmh1",
+  "widgetName": "Statbox1"
 }

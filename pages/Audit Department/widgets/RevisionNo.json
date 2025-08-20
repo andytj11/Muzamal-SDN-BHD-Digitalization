@@ -20,7 +20,7 @@
   "isLoading": false,
   "isVisible": true,
   "key": "2l3kskb1cl",
-  "leftColumn": 24,
+  "leftColumn": 18,
   "maxDynamicHeight": 9000,
   "minDynamicHeight": 4,
   "minWidth": 450,
@@ -37,15 +37,15 @@
   "parentRowSpace": 10,
   "renderMode": "CANVAS",
   "responsiveBehavior": "fill",
-  "rightColumn": 36,
+  "rightColumn": 24,
   "shouldTruncate": false,
-  "text": "Document No: \nMUZ-FM-AUD-002",
+  "text": "Revision:\n6",
   "textAlign": "CENTER",
   "textColor": "#71717a",
   "topRow": 12,
   "truncateButtonColor": "{{appsmith.theme.colors.primaryColor}}",
   "type": "TEXT_WIDGET",
   "version": 1,
-  "widgetId": "82c4t4xb0t",
-  "widgetName": "Document_No"
+  "widgetId": "aba97goevo",
+  "widgetName": "RevisionNo"
 }

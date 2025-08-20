@@ -2,16 +2,14 @@
   "animateLoading": true,
   "borderColor": "#71717a",
   "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
-  "bottomRow": 5,
+  "bottomRow": 6,
+  "disableLink": false,
   "dynamicBindingPathList": [
     {
       "key": "truncateButtonColor"
     },
     {
       "key": "borderRadius"
-    },
-    {
-      "key": "text"
     }
   ],
   "dynamicHeight": "AUTO_HEIGHT",
@@ -31,7 +29,7 @@
   "mobileRightColumn": 37,
   "mobileTopRow": 0,
   "needsErrorInfo": false,
-  "originalBottomRow": 5,
+  "originalBottomRow": 6,
   "originalTopRow": 0,
   "overflow": "NONE",
   "parentId": "mic4dmk8bz",
@@ -39,7 +37,7 @@
   "responsiveBehavior": "fill",
   "rightColumn": 62,
   "shouldTruncate": false,
-  "text": "Observation Plan reply due date: \n{{ Utils.addWorkingDays(DatePicker_SubmittedDate.selectedDate, 7, Holidays_GetAll.data) }}",
+  "text": "Observation Plan reply due date: \n(follow observation ID reply due date)",
   "textAlign": "CENTER",
   "textColor": "#b33d0a",
   "topRow": 0,

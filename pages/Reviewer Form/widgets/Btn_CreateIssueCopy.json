@@ -1,9 +1,9 @@
 {
   "animateLoading": true,
   "borderRadius": "0.375rem",
-  "bottomRow": 61,
+  "bottomRow": 73,
   "boxShadow": "0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)",
-  "buttonColor": "#b33d0a",
+  "buttonColor": "#a16207",
   "buttonVariant": "SECONDARY",
   "disabledWhenInvalid": false,
   "dynamicBindingPathList": [],
@@ -32,8 +32,8 @@
   "mobileTopRow": 44,
   "needsErrorInfo": false,
   "onClick": "{{\n  (async () => {\n    // 1) Generate the ID once so we can navigate to it after insert\n    const newId = \"I\" + Date.now();\n    await storeValue('NEW_ISSUE_ID', newId);\n\n    // 2) Basic front-end validation (optional but recommended)\n    if (!Input_Title.text) { showAlert(\"Title is required\", \"warning\"); return; }\n    if (!AssignedToSelect.selectedOptionValue) { showAlert(\"PIC is required\", \"warning\"); return; }\n    if (!ApprovedBySelect.selectedOptionValue) { showAlert(\"Reviewer is required\", \"warning\"); return; }\n    if (!DepartmentSelect.selectedOptionValue) { showAlert(\"Department is required\", \"warning\"); return; }\n\n    // 3) Run the insert\n    await Issues_Insert.run();\n\n    // 4) Refresh reads (so My Tasks / tables update)\n    await Issues_GetAll.run();\n\n    // 5) Notify + navigate to details page of the new issue\n    showAlert(\"Issue created.\", \"success\");\n    navigateTo('Issue_Details', { id: newId }, 'SAME_WINDOW');\n\n    // 6) (Optional) clear the form\n    resetWidget('Input_Title', true);\n    resetWidget('Input_Desc', true);\n    resetWidget('Select_PIC', true);\n    resetWidget('Select_Reviewer', true);\n    resetWidget('Select_Dept', true);\n\n    // 7) Clear temp store\n    await storeValue('NEW_ISSUE_ID', undefined);\n  })()\n}}",
-  "originalBottomRow": 61,
-  "originalTopRow": 57,
+  "originalBottomRow": 73,
+  "originalTopRow": 69,
   "parentColumnSpace": 10.25,
   "parentId": "0",
   "parentRowSpace": 10,
@@ -44,9 +44,9 @@
   "responsiveBehavior": "hug",
   "rightColumn": 46,
   "text": "Sign here.",
-  "topRow": 57,
+  "topRow": 69,
   "type": "BUTTON_WIDGET",
   "version": 1,
-  "widgetId": "510wao21vm",
-  "widgetName": "Btn_CreateIssue"
+  "widgetId": "nnyjduabs1",
+  "widgetName": "Btn_CreateIssueCopy"
 }

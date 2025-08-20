@@ -72,7 +72,7 @@
     "dynamicBindingPathList": [],
     "name": "Departments_GetAll",
     "pageId": "Reviewer Form",
-    "runBehaviour": "AUTOMATIC",
+    "runBehaviour": "MANUAL",
     "userSetOnLoad": false
   }
 }
