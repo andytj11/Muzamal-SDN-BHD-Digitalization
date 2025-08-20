@@ -1,7 +1,7 @@
 {
   "animateLoading": true,
   "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
-  "bottomRow": 8,
+  "bottomRow": 20,
   "dynamicBindingPathList": [
     {
       "key": "truncateButtonColor"
@@ -25,24 +25,28 @@
   "maxDynamicHeight": 9000,
   "minDynamicHeight": 4,
   "minWidth": 450,
-  "mobileBottomRow": 4,
-  "mobileLeftColumn": 1,
-  "mobileRightColumn": 37,
-  "mobileTopRow": 0,
+  "mobileBottomRow": 129,
+  "mobileLeftColumn": 24,
+  "mobileRightColumn": 40,
+  "mobileTopRow": 125,
   "needsErrorInfo": false,
+  "originalBottomRow": 21,
+  "originalTopRow": 16,
   "overflow": "NONE",
+  "parentColumnSpace": 17.9375,
   "parentId": "vk2nex3s6p",
+  "parentRowSpace": 10,
   "renderMode": "CANVAS",
   "responsiveBehavior": "fill",
   "rightColumn": 37,
   "shouldTruncate": false,
-  "text": "Department\t\t\t\t\t:",
+  "text": "Findings\t\t\t\t\t\t:",
   "textAlign": "LEFT",
-  "textColor": "#18181b",
-  "topRow": 4,
+  "textColor": "#231F20",
+  "topRow": 16,
   "truncateButtonColor": "{{appsmith.theme.colors.primaryColor}}",
   "type": "TEXT_WIDGET",
   "version": 1,
-  "widgetId": "5yoe7uhtbs",
-  "widgetName": "Text1Copy"
+  "widgetId": "gkqp7zo65d",
+  "widgetName": "Findings"
 }

@@ -1,7 +1,7 @@
 {
   "animateLoading": true,
   "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
-  "bottomRow": 71,
+  "bottomRow": 58,
   "dynamicBindingPathList": [
     {
       "key": "truncateButtonColor"
@@ -30,8 +30,8 @@
   "mobileRightColumn": 34,
   "mobileTopRow": 39,
   "needsErrorInfo": false,
-  "originalBottomRow": 71,
-  "originalTopRow": 67,
+  "originalBottomRow": 58,
+  "originalTopRow": 54,
   "overflow": "NONE",
   "parentColumnSpace": 17.9375,
   "parentId": "0",
@@ -40,13 +40,13 @@
   "responsiveBehavior": "fill",
   "rightColumn": 26,
   "shouldTruncate": false,
-  "text": "Superior Approval:",
+  "text": "Reply By (Assignee):",
   "textAlign": "LEFT",
   "textColor": "{{appsmith.theme.colors.primaryColor}}",
-  "topRow": 67,
+  "topRow": 54,
   "truncateButtonColor": "{{appsmith.theme.colors.primaryColor}}",
   "type": "TEXT_WIDGET",
   "version": 1,
-  "widgetId": "hro3ol14rr",
-  "widgetName": "Issued_ByCopy"
+  "widgetId": "fx8kkyeehu",
+  "widgetName": "ReplyBy"
 }
