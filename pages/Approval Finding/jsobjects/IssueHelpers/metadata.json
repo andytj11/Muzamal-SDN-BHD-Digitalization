@@ -1,0 +1,24 @@
+{
+  "gitSyncId": "689d89d0c8cfcc46e1c3653b_d5a56a64-c79f-4072-aeee-f435559d7c5a",
+  "id": "Approval Finding_IssueHelpers",
+  "unpublishedCollection": {
+    "name": "IssueHelpers",
+    "pageId": "Approval Finding",
+    "pluginId": "js-plugin",
+    "pluginType": "JS",
+    "variables": [
+      {
+        "name": "BASE_FORM_START",
+        "value": "7004"
+      },
+      {
+        "name": "BASE_CODE_START_BY_YEAR",
+        "value": "{\n  \"2025\": 8\n}"
+      },
+      {
+        "name": "CAL_DAYS",
+        "value": "30"
+      }
+    ]
+  }
+}

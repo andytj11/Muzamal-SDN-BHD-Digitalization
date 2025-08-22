@@ -1,0 +1,16 @@
+{
+  "gitSyncId": "689d89d0c8cfcc46e1c3653b_45f7c518-a7e6-4c5b-bcad-343824a0e0fc",
+  "id": "Approval Finding_ReviewActions",
+  "unpublishedCollection": {
+    "name": "ReviewActions",
+    "pageId": "Approval Finding",
+    "pluginId": "js-plugin",
+    "pluginType": "JS",
+    "variables": [
+      {
+        "name": "stage",
+        "value": "\"red\""
+      }
+    ]
+  }
+}

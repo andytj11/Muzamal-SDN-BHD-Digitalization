@@ -1,0 +1,11 @@
+{
+  "gitSyncId": "689d89d0c8cfcc46e1c3653b_55d59771-48fa-4415-a3f3-114d670fc72b",
+  "id": "Approval Finding_Session",
+  "unpublishedCollection": {
+    "name": "Session",
+    "pageId": "Approval Finding",
+    "pluginId": "js-plugin",
+    "pluginType": "JS",
+    "variables": []
+  }
+}

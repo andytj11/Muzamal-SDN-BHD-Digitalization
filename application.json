@@ -21,19 +21,19 @@
   "icon": "bag",
   "pages": [
     {
-      "id": "Audit Department",
+      "id": "Create Finding",
       "isDefault": true
     },
     {
-      "id": "Issues Details Form",
+      "id": "Review Findings",
       "isDefault": false
     },
     {
-      "id": "Reviewer Form",
+      "id": "OFI Plan Reply",
       "isDefault": false
     },
     {
-      "id": "Verification Form",
+      "id": "Approval Finding",
       "isDefault": false
     }
   ],

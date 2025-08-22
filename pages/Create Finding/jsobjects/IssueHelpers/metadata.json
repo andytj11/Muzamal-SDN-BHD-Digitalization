@@ -1,0 +1,11 @@
+{
+  "gitSyncId": "689d89d0c8cfcc46e1c3653b_70ddee88-b5dc-4aa1-bb42-1daad2cacb7a",
+  "id": "Create Finding_IssueHelpers",
+  "unpublishedCollection": {
+    "name": "IssueHelpers",
+    "pageId": "Create Finding",
+    "pluginId": "js-plugin",
+    "pluginType": "JS",
+    "variables": []
+  }
+}
