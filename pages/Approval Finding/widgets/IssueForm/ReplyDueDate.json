@@ -41,7 +41,7 @@
   "responsiveBehavior": "fill",
   "rightColumn": 37,
   "shouldTruncate": false,
-  "text": "Reply due Date:\t\t\t:\t{{ Fmt.sheet(ReviewActions.header().plan_reply_due_date) }}",
+  "text": "Reply due Date\t\t\t:\t{{ Fmt.sheet(ReviewActions.header().plan_reply_due_date) }}",
   "textAlign": "LEFT",
   "textColor": "#18181b",
   "topRow": 13,

@@ -1,7 +1,7 @@
 {
   "animateLoading": true,
   "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
-  "bottomRow": 16,
+  "bottomRow": 5,
   "dynamicBindingPathList": [
     {
       "key": "truncateButtonColor"
@@ -20,8 +20,8 @@
   "fontStyle": "",
   "isLoading": false,
   "isVisible": true,
-  "key": "8hj3cm8s5h",
-  "leftColumn": 32,
+  "key": "sld2hiu4g6",
+  "leftColumn": 1,
   "maxDynamicHeight": 9000,
   "minDynamicHeight": 4,
   "minWidth": 450,
@@ -31,18 +31,18 @@
   "mobileTopRow": 0,
   "needsErrorInfo": false,
   "overflow": "NONE",
-  "parentId": "9uspj1mwwh",
+  "parentId": "gebrr8yjfa",
   "renderMode": "CANVAS",
   "responsiveBehavior": "fill",
-  "rightColumn": 62,
+  "rightColumn": 37,
   "shouldTruncate": false,
-  "text": "Signature\t\t:",
+  "text": "Finding Attachment",
   "textAlign": "LEFT",
   "textColor": "#18181b",
-  "topRow": 12,
+  "topRow": 1,
   "truncateButtonColor": "{{appsmith.theme.colors.primaryColor}}",
   "type": "TEXT_WIDGET",
   "version": 1,
-  "widgetId": "a1j1fm401f",
-  "widgetName": "ApproverStatusCopyCopy"
+  "widgetId": "4q7f77v04e",
+  "widgetName": "FindingAttachment"
 }

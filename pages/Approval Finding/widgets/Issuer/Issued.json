@@ -37,7 +37,7 @@
   "responsiveBehavior": "fill",
   "rightColumn": 22,
   "shouldTruncate": false,
-  "text": "Issued By\t\t: ",
+  "text": "Issued By\t\t\t: ",
   "textAlign": "LEFT",
   "textColor": "#18181b",
   "topRow": 1,

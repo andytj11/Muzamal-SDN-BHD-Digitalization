@@ -37,7 +37,7 @@
   "responsiveBehavior": "fill",
   "rightColumn": 22,
   "shouldTruncate": false,
-  "text": "Assigned To:",
+  "text": "Assigned To\t\t:",
   "textAlign": "LEFT",
   "textColor": "#18181b",
   "topRow": 1,
