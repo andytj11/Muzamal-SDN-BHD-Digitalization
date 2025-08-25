@@ -1,0 +1,53 @@
+{
+  "allowedFileTypes": [
+    ".png",
+    "image/jpeg"
+  ],
+  "animateLoading": true,
+  "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
+  "bottomRow": 16,
+  "boxShadow": "0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)",
+  "buttonColor": "{{appsmith.theme.colors.primaryColor}}",
+  "dynamicBindingPathList": [
+    {
+      "key": "borderRadius"
+    },
+    {
+      "key": "buttonColor"
+    }
+  ],
+  "dynamicTriggerPathList": [],
+  "dynamicTyping": true,
+  "fileDataType": "Base64",
+  "files": [],
+  "isDefaultClickDisabled": true,
+  "isDisabled": false,
+  "isLoading": false,
+  "isRequired": false,
+  "isVisible": true,
+  "key": "6ezbr1fe4b",
+  "label": "Upload OFI Evidence",
+  "leftColumn": 1,
+  "maxFileSize": "5",
+  "maxNumFiles": "1",
+  "minWidth": 120,
+  "mobileBottomRow": 27,
+  "mobileLeftColumn": 0,
+  "mobileRightColumn": 15,
+  "mobileTopRow": 23,
+  "needsErrorInfo": false,
+  "originalBottomRow": 16,
+  "originalTopRow": 12,
+  "parentColumnSpace": 17.9375,
+  "parentId": "oryuerqzlj",
+  "parentRowSpace": 10,
+  "renderMode": "CANVAS",
+  "responsiveBehavior": "hug",
+  "rightColumn": 62,
+  "selectedFiles": [],
+  "topRow": 12,
+  "type": "FILE_PICKER_WIDGET_V2",
+  "version": 1,
+  "widgetId": "aajbwhfd8k",
+  "widgetName": "EvidenceUpload"
+}

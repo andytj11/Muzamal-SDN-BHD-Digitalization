@@ -25,15 +25,23 @@
       "isDefault": true
     },
     {
-      "id": "Review Findings",
-      "isDefault": false
-    },
-    {
-      "id": "Opportunities for Improvement",
+      "id": "Review OFI",
       "isDefault": false
     },
     {
       "id": "Approval Finding",
+      "isDefault": false
+    },
+    {
+      "id": "Verify OFI Plan",
+      "isDefault": false
+    },
+    {
+      "id": "Verify OFI Evidence",
+      "isDefault": false
+    },
+    {
+      "id": "Overview",
       "isDefault": false
     }
   ],
