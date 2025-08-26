@@ -11,6 +11,9 @@
     },
     {
       "key": "sourceData"
+    },
+    {
+      "key": "labelTextColor"
     }
   ],
   "dynamicHeight": "FIXED",
@@ -43,7 +46,7 @@
   "labelPosition": "Top",
   "labelStyle": "",
   "labelText": "Department",
-  "labelTextColor": "#18181b",
+  "labelTextColor": "{{appsmith.theme.colors.primaryColor}}",
   "labelTextSize": "0.875rem",
   "labelWidth": 5,
   "leftColumn": 2,

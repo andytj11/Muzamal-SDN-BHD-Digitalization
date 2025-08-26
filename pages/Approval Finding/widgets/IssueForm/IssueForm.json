@@ -1,15 +1,15 @@
 {
   "animateLoading": true,
-  "backgroundColor": "#ffffff",
-  "borderColor": "#b33d0a",
-  "borderRadius": "0.375rem",
-  "borderWidth": "0",
-  "bottomRow": 49,
+  "backgroundColor": "white",
+  "borderColor": "#E0DEDE",
+  "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
+  "borderWidth": "1",
+  "bottomRow": 45,
   "boxShadow": "0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)",
   "children": [
     {
       "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
-      "bottomRow": 350,
+      "bottomRow": 300,
       "boxShadow": "{{appsmith.theme.boxShadow.appBoxShadow}}",
       "canExtend": false,
       "containerStyle": "none",
@@ -38,7 +38,7 @@
       "mobileTopRow": 0,
       "needsErrorInfo": false,
       "parentColumnSpace": 1,
-      "parentId": "1em3ng8snx",
+      "parentId": "9tdo8021y6",
       "parentRowSpace": 1,
       "renderMode": "CANVAS",
       "responsiveBehavior": "fill",
@@ -46,11 +46,15 @@
       "topRow": 0,
       "type": "CANVAS_WIDGET",
       "version": 1,
-      "widgetId": "ydc5th2fxo",
+      "widgetId": "k59ay49e9y",
       "widgetName": "Canvas2"
     }
   ],
-  "dynamicBindingPathList": [],
+  "dynamicBindingPathList": [
+    {
+      "key": "borderRadius"
+    }
+  ],
   "dynamicHeight": "AUTO_HEIGHT",
   "dynamicTriggerPathList": [],
   "flexVerticalAlignment": "stretch",
@@ -66,8 +70,8 @@
   "mobileRightColumn": 40,
   "mobileTopRow": 78,
   "needsErrorInfo": false,
-  "originalBottomRow": 49,
-  "originalTopRow": 14,
+  "originalBottomRow": 45,
+  "originalTopRow": 15,
   "parentColumnSpace": 17.9375,
   "parentId": "0",
   "parentRowSpace": 10,
@@ -76,8 +80,8 @@
   "responsiveBehavior": "fill",
   "rightColumn": 46,
   "shouldScrollContents": true,
-  "topRow": 14,
+  "topRow": 15,
   "type": "STATBOX_WIDGET",
-  "widgetId": "1em3ng8snx",
+  "widgetId": "9tdo8021y6",
   "widgetName": "IssueForm"
 }

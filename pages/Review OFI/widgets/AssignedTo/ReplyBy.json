@@ -8,6 +8,9 @@
     },
     {
       "key": "borderRadius"
+    },
+    {
+      "key": "textColor"
     }
   ],
   "dynamicHeight": "AUTO_HEIGHT",
@@ -37,9 +40,9 @@
   "responsiveBehavior": "fill",
   "rightColumn": 20,
   "shouldTruncate": false,
-  "text": "Reply By \t\t\t:",
+  "text": "Reply By \t\t\t",
   "textAlign": "LEFT",
-  "textColor": "#18181b",
+  "textColor": "{{appsmith.theme.colors.primaryColor}}",
   "topRow": 1,
   "truncateButtonColor": "{{appsmith.theme.colors.primaryColor}}",
   "type": "TEXT_WIDGET",

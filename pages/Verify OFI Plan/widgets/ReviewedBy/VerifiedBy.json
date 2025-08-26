@@ -8,6 +8,9 @@
     },
     {
       "key": "borderRadius"
+    },
+    {
+      "key": "textColor"
     }
   ],
   "dynamicHeight": "AUTO_HEIGHT",
@@ -27,23 +30,23 @@
   "mobileRightColumn": 34,
   "mobileTopRow": 39,
   "needsErrorInfo": false,
-  "originalBottomRow": 6,
+  "originalBottomRow": 5,
   "originalTopRow": 1,
   "overflow": "NONE",
   "parentColumnSpace": 17.9375,
-  "parentId": "h9v1q12g7r",
+  "parentId": "f4sm06mt6k",
   "parentRowSpace": 10,
   "renderMode": "CANVAS",
   "responsiveBehavior": "fill",
-  "rightColumn": 20,
+  "rightColumn": 15,
   "shouldTruncate": false,
-  "text": "Verified By \t\t:",
+  "text": "Verified By",
   "textAlign": "LEFT",
-  "textColor": "#18181b",
+  "textColor": "{{appsmith.theme.colors.primaryColor}}",
   "topRow": 1,
   "truncateButtonColor": "{{appsmith.theme.colors.primaryColor}}",
   "type": "TEXT_WIDGET",
   "version": 1,
-  "widgetId": "4yhyfjnuqx",
+  "widgetId": "38yf8zz0gs",
   "widgetName": "VerifiedBy"
 }

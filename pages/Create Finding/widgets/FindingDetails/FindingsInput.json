@@ -9,6 +9,9 @@
   "dynamicBindingPathList": [
     {
       "key": "accentColor"
+    },
+    {
+      "key": "labelTextColor"
     }
   ],
   "dynamicHeight": "AUTO_HEIGHT",
@@ -25,7 +28,7 @@
   "labelAlignment": "left",
   "labelPosition": "Top",
   "labelStyle": "",
-  "labelTextColor": "#18181b",
+  "labelTextColor": "{{appsmith.theme.colors.primaryColor}}",
   "labelTextSize": "0.875rem",
   "labelWidth": 5,
   "leftColumn": 1,

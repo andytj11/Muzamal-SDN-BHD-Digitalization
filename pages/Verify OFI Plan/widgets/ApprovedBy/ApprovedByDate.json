@@ -18,7 +18,7 @@
   "isLoading": false,
   "isVisible": true,
   "key": "2l3kskb1cl",
-  "leftColumn": 20,
+  "leftColumn": 15,
   "maxDynamicHeight": 9000,
   "minDynamicHeight": 4,
   "minWidth": 450,
@@ -31,7 +31,7 @@
   "originalTopRow": 5,
   "overflow": "NONE",
   "parentColumnSpace": 17.9375,
-  "parentId": "b1nsmompvx",
+  "parentId": "28t09038yv",
   "parentRowSpace": 10,
   "renderMode": "CANVAS",
   "responsiveBehavior": "fill",
@@ -44,6 +44,6 @@
   "truncateButtonColor": "{{appsmith.theme.colors.primaryColor}}",
   "type": "TEXT_WIDGET",
   "version": 1,
-  "widgetId": "fol0a8rzaz",
+  "widgetId": "ra808uf1np",
   "widgetName": "ApprovedByDate"
 }

@@ -11,6 +11,9 @@
   "dynamicBindingPathList": [
     {
       "key": "accentColor"
+    },
+    {
+      "key": "labelTextColor"
     }
   ],
   "dynamicHeight": "FIXED",
@@ -24,7 +27,7 @@
   "label": "Date of Findings",
   "labelAlignment": "left",
   "labelPosition": "Top",
-  "labelTextColor": "#18181b",
+  "labelTextColor": "{{appsmith.theme.colors.primaryColor}}",
   "labelTextSize": "0.875rem",
   "labelWidth": 5,
   "leftColumn": 2,

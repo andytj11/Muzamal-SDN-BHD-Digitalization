@@ -11,6 +11,9 @@
     },
     {
       "key": "borderRadius"
+    },
+    {
+      "key": "textColor"
     }
   ],
   "dynamicHeight": "AUTO_HEIGHT",
@@ -33,18 +36,18 @@
   "originalBottomRow": 8,
   "originalTopRow": 4,
   "overflow": "NONE",
-  "parentId": "vk2nex3s6p",
+  "parentId": "4i3y3eplne",
   "renderMode": "CANVAS",
   "responsiveBehavior": "fill",
-  "rightColumn": 37,
+  "rightColumn": 23,
   "shouldTruncate": false,
-  "text": "Department\t\t\t\t\t:",
+  "text": "Department\t\t\t",
   "textAlign": "LEFT",
-  "textColor": "#18181b",
+  "textColor": "{{appsmith.theme.colors.primaryColor}}",
   "topRow": 16,
   "truncateButtonColor": "{{appsmith.theme.colors.primaryColor}}",
   "type": "TEXT_WIDGET",
   "version": 1,
-  "widgetId": "5yoe7uhtbs",
+  "widgetId": "54arix652d",
   "widgetName": "Department"
 }

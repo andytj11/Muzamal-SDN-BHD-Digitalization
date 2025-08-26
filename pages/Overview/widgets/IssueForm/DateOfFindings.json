@@ -1,7 +1,7 @@
 {
   "animateLoading": true,
   "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
-  "bottomRow": 12,
+  "bottomRow": 8,
   "dynamicBindingPathList": [
     {
       "key": "truncateButtonColor"
@@ -11,6 +11,9 @@
     },
     {
       "key": "borderRadius"
+    },
+    {
+      "key": "textColor"
     }
   ],
   "dynamicHeight": "AUTO_HEIGHT",
@@ -30,21 +33,19 @@
   "mobileRightColumn": 37,
   "mobileTopRow": 0,
   "needsErrorInfo": false,
-  "originalBottomRow": 12,
-  "originalTopRow": 8,
   "overflow": "NONE",
-  "parentId": "vk2nex3s6p",
+  "parentId": "h7el9u3kz2",
   "renderMode": "CANVAS",
   "responsiveBehavior": "fill",
-  "rightColumn": 37,
+  "rightColumn": 23,
   "shouldTruncate": false,
-  "text": "Date of Findings\t\t\t:",
+  "text": "Date of Findings\t\t",
   "textAlign": "LEFT",
-  "textColor": "#18181b",
-  "topRow": 8,
+  "textColor": "{{appsmith.theme.colors.primaryColor}}",
+  "topRow": 4,
   "truncateButtonColor": "{{appsmith.theme.colors.primaryColor}}",
   "type": "TEXT_WIDGET",
   "version": 1,
-  "widgetId": "lpk9igjmgm",
+  "widgetId": "j8dpstbxyi",
   "widgetName": "DateOfFindings"
 }

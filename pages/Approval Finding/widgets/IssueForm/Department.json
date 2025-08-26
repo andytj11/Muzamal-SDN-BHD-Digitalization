@@ -1,7 +1,7 @@
 {
   "animateLoading": true,
   "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
-  "bottomRow": 21,
+  "bottomRow": 20,
   "dynamicBindingPathList": [
     {
       "key": "truncateButtonColor"
@@ -13,7 +13,7 @@
       "key": "borderRadius"
     },
     {
-      "key": "text"
+      "key": "textColor"
     }
   ],
   "dynamicHeight": "AUTO_HEIGHT",
@@ -33,21 +33,21 @@
   "mobileRightColumn": 37,
   "mobileTopRow": 0,
   "needsErrorInfo": false,
-  "originalBottomRow": 17,
-  "originalTopRow": 12,
+  "originalBottomRow": 8,
+  "originalTopRow": 4,
   "overflow": "NONE",
-  "parentId": "ydc5th2fxo",
+  "parentId": "k59ay49e9y",
   "renderMode": "CANVAS",
   "responsiveBehavior": "fill",
-  "rightColumn": 37,
+  "rightColumn": 23,
   "shouldTruncate": false,
-  "text": "Department\t\t\t\t\t:\t{{ ReviewActions.header().department_name || \"-\" }}",
+  "text": "Department\t\t\t",
   "textAlign": "LEFT",
-  "textColor": "#18181b",
-  "topRow": 17,
+  "textColor": "{{appsmith.theme.colors.primaryColor}}",
+  "topRow": 16,
   "truncateButtonColor": "{{appsmith.theme.colors.primaryColor}}",
   "type": "TEXT_WIDGET",
   "version": 1,
-  "widgetId": "mu3grp0nrc",
+  "widgetId": "0oxhmbzwpo",
   "widgetName": "Department"
 }

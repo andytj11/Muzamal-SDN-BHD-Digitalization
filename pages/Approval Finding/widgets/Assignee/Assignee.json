@@ -4,7 +4,7 @@
   "borderColor": "#E0DEDE",
   "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
   "borderWidth": "1",
-  "bottomRow": 132,
+  "bottomRow": 128,
   "boxShadow": "{{appsmith.theme.boxShadow.appBoxShadow}}",
   "children": [
     {
@@ -72,8 +72,8 @@
   "mobileRightColumn": 40,
   "mobileTopRow": 68,
   "needsErrorInfo": false,
-  "originalBottomRow": 141,
-  "originalTopRow": 121,
+  "originalBottomRow": 128,
+  "originalTopRow": 108,
   "parentColumnSpace": 17.9375,
   "parentId": "0",
   "parentRowSpace": 10,
@@ -82,7 +82,7 @@
   "responsiveBehavior": "fill",
   "rightColumn": 46,
   "shouldScrollContents": true,
-  "topRow": 112,
+  "topRow": 108,
   "type": "STATBOX_WIDGET",
   "widgetId": "lqq1wgmz9s",
   "widgetName": "Assignee"

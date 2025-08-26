@@ -4,7 +4,7 @@
   "borderColor": "#E0DEDE",
   "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
   "borderWidth": "1",
-  "bottomRow": 111,
+  "bottomRow": 108,
   "boxShadow": "0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)",
   "children": [
     {
@@ -70,8 +70,8 @@
   "mobileRightColumn": 46,
   "mobileTopRow": 229,
   "needsErrorInfo": false,
-  "originalBottomRow": 111,
-  "originalTopRow": 91,
+  "originalBottomRow": 108,
+  "originalTopRow": 88,
   "parentColumnSpace": 17.9375,
   "parentId": "0",
   "parentRowSpace": 10,
@@ -80,7 +80,7 @@
   "responsiveBehavior": "fill",
   "rightColumn": 46,
   "shouldScrollContents": true,
-  "topRow": 91,
+  "topRow": 88,
   "type": "STATBOX_WIDGET",
   "widgetId": "lcnw8rocg5",
   "widgetName": "ReviewedBy"
