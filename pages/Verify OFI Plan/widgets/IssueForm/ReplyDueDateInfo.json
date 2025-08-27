@@ -11,6 +11,9 @@
     },
     {
       "key": "borderRadius"
+    },
+    {
+      "key": "text"
     }
   ],
   "dynamicHeight": "AUTO_HEIGHT",
@@ -33,18 +36,18 @@
   "originalBottomRow": 16,
   "originalTopRow": 12,
   "overflow": "NONE",
-  "parentId": "fn4f8tkk1o",
+  "parentId": "04mqpjhw89",
   "renderMode": "CANVAS",
   "responsiveBehavior": "fill",
   "rightColumn": 45,
   "shouldTruncate": false,
-  "text": "(extract reply due date)",
+  "text": "{{ Fmt.sheet(ReviewActions.header().plan_reply_due_date) }}",
   "textAlign": "LEFT",
   "textColor": "#18181b",
   "topRow": 12,
   "truncateButtonColor": "{{appsmith.theme.colors.primaryColor}}",
   "type": "TEXT_WIDGET",
   "version": 1,
-  "widgetId": "w5wh5kedzg",
+  "widgetId": "dxdd6vqzjy",
   "widgetName": "ReplyDueDateInfo"
 }

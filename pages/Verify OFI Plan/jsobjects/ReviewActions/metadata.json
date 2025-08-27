@@ -1,0 +1,20 @@
+{
+  "gitSyncId": "689d89d0c8cfcc46e1c3653b_7d22561a-4521-49d4-8189-c719d71cb960",
+  "id": "Verify OFI Plan_ReviewActions",
+  "unpublishedCollection": {
+    "name": "ReviewActions",
+    "pageId": "Verify OFI Plan",
+    "pluginId": "js-plugin",
+    "pluginType": "JS",
+    "variables": [
+      {
+        "name": "stage",
+        "value": "\"red\""
+      },
+      {
+        "name": "roles",
+        "value": "[\"reviewer\", \"approver\", \"assigned_to\", \"attention_to\"]"
+      }
+    ]
+  }
+}

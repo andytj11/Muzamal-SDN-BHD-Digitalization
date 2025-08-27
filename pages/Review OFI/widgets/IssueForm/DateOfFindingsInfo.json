@@ -11,6 +11,9 @@
     },
     {
       "key": "borderRadius"
+    },
+    {
+      "key": "text"
     }
   ],
   "dynamicHeight": "AUTO_HEIGHT",
@@ -33,18 +36,18 @@
   "originalBottomRow": 12,
   "originalTopRow": 8,
   "overflow": "NONE",
-  "parentId": "vk2nex3s6p",
+  "parentId": "ajecemjcw7",
   "renderMode": "CANVAS",
   "responsiveBehavior": "fill",
   "rightColumn": 45,
   "shouldTruncate": false,
-  "text": "(extract date of findings)",
+  "text": "{{ Fmt.sheet(ReviewActions.header().date_of_findings) }}",
   "textAlign": "LEFT",
   "textColor": "#18181b",
   "topRow": 8,
   "truncateButtonColor": "{{appsmith.theme.colors.primaryColor}}",
   "type": "TEXT_WIDGET",
   "version": 1,
-  "widgetId": "t2nvjfrw9x",
+  "widgetId": "6z8c6tj3c4",
   "widgetName": "DateOfFindingsInfo"
 }

@@ -1,0 +1,20 @@
+{
+  "gitSyncId": "689d89d0c8cfcc46e1c3653b_a686a978-f2bf-4698-881e-a7b8e48a3128",
+  "id": "Verify OFI Plan_ReviewOFi",
+  "unpublishedCollection": {
+    "name": "ReviewOFi",
+    "pageId": "Verify OFI Plan",
+    "pluginId": "js-plugin",
+    "pluginType": "JS",
+    "variables": [
+      {
+        "name": "stage",
+        "value": "\"blue\""
+      },
+      {
+        "name": "_userIx",
+        "value": "null"
+      }
+    ]
+  }
+}

@@ -11,6 +11,9 @@
     },
     {
       "key": "borderRadius"
+    },
+    {
+      "key": "text"
     }
   ],
   "dynamicHeight": "AUTO_HEIGHT",
@@ -38,7 +41,7 @@
   "responsiveBehavior": "fill",
   "rightColumn": 45,
   "shouldTruncate": false,
-  "text": "(require attentive status)",
+  "text": "{{ ReviewOFi.ackStatus('attention_to') }}",
   "textAlign": "LEFT",
   "textColor": "#18181b",
   "topRow": 16,

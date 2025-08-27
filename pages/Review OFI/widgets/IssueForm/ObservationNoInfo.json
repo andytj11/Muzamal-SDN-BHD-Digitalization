@@ -11,6 +11,9 @@
     },
     {
       "key": "borderRadius"
+    },
+    {
+      "key": "text"
     }
   ],
   "dynamicHeight": "AUTO_HEIGHT",
@@ -33,18 +36,18 @@
   "originalBottomRow": 4,
   "originalTopRow": 0,
   "overflow": "NONE",
-  "parentId": "vk2nex3s6p",
+  "parentId": "ajecemjcw7",
   "renderMode": "CANVAS",
   "responsiveBehavior": "fill",
   "rightColumn": 45,
   "shouldTruncate": false,
-  "text": "(extract from input)",
+  "text": "{{ ObservationNoInput.text }}",
   "textAlign": "LEFT",
   "textColor": "#18181b",
   "topRow": 0,
   "truncateButtonColor": "{{appsmith.theme.colors.primaryColor}}",
   "type": "TEXT_WIDGET",
   "version": 1,
-  "widgetId": "z2k8tzp1ba",
+  "widgetId": "3o2n92u4vj",
   "widgetName": "ObservationNoInfo"
 }

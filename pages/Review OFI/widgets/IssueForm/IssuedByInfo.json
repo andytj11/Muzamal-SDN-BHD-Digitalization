@@ -11,6 +11,9 @@
     },
     {
       "key": "borderRadius"
+    },
+    {
+      "key": "text"
     }
   ],
   "dynamicHeight": "AUTO_HEIGHT",
@@ -33,18 +36,18 @@
   "originalBottomRow": 8,
   "originalTopRow": 4,
   "overflow": "NONE",
-  "parentId": "vk2nex3s6p",
+  "parentId": "ajecemjcw7",
   "renderMode": "CANVAS",
   "responsiveBehavior": "fill",
-  "rightColumn": 62,
+  "rightColumn": 45,
   "shouldTruncate": false,
-  "text": "(extract name and role)",
+  "text": "{{ ReviewActions.header().issued_by_name || \"-\" }}",
   "textAlign": "LEFT",
   "textColor": "#18181b",
   "topRow": 4,
   "truncateButtonColor": "{{appsmith.theme.colors.primaryColor}}",
   "type": "TEXT_WIDGET",
   "version": 1,
-  "widgetId": "q4z4rr138h",
+  "widgetId": "vkdae6kf5d",
   "widgetName": "IssuedByInfo"
 }

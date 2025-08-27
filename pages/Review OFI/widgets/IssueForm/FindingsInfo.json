@@ -1,7 +1,7 @@
 {
   "animateLoading": true,
   "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
-  "bottomRow": 28,
+  "bottomRow": 32,
   "dynamicBindingPathList": [
     {
       "key": "truncateButtonColor"
@@ -11,6 +11,9 @@
     },
     {
       "key": "borderRadius"
+    },
+    {
+      "key": "text"
     }
   ],
   "dynamicHeight": "AUTO_HEIGHT",
@@ -30,23 +33,23 @@
   "mobileRightColumn": 35,
   "mobileTopRow": 99,
   "needsErrorInfo": false,
-  "originalBottomRow": 28,
-  "originalTopRow": 24,
+  "originalBottomRow": 32,
+  "originalTopRow": 28,
   "overflow": "NONE",
   "parentColumnSpace": 17.9375,
-  "parentId": "vk2nex3s6p",
+  "parentId": "ajecemjcw7",
   "parentRowSpace": 10,
   "renderMode": "CANVAS",
   "responsiveBehavior": "fill",
   "rightColumn": 63,
   "shouldTruncate": false,
-  "text": "(extract findings from the observation id input)",
+  "text": "{{ ReviewActions.header().findings_summary || \"-\" }}",
   "textAlign": "LEFT",
   "textColor": "#18181b",
-  "topRow": 24,
+  "topRow": 28,
   "truncateButtonColor": "{{appsmith.theme.colors.primaryColor}}",
   "type": "TEXT_WIDGET",
   "version": 1,
-  "widgetId": "elrnqhcdtr",
+  "widgetId": "xtc99ul761",
   "widgetName": "FindingsInfo"
 }

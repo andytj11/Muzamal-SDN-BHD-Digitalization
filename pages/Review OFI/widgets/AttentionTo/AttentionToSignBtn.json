@@ -9,15 +9,30 @@
   "dynamicBindingPathList": [
     {
       "key": "borderRadius"
+    },
+    {
+      "key": "isVisible"
     }
   ],
-  "dynamicTriggerPathList": [],
+  "dynamicPropertyPathList": [
+    {
+      "key": "onClick"
+    },
+    {
+      "key": "isVisible"
+    }
+  ],
+  "dynamicTriggerPathList": [
+    {
+      "key": "onClick"
+    }
+  ],
   "iconAlign": "left",
   "iconName": "tick",
   "isDefaultClickDisabled": true,
   "isDisabled": false,
   "isLoading": false,
-  "isVisible": true,
+  "isVisible": "{{ !ReviewOFi.isAttentionApproved() }}",
   "key": "bvv0z8gani",
   "leftColumn": 43,
   "minWidth": 120,
@@ -26,6 +41,7 @@
   "mobileRightColumn": 53,
   "mobileTopRow": 61,
   "needsErrorInfo": false,
+  "onClick": "{{ ReviewOFi.approveAttention() }}",
   "originalBottomRow": 124,
   "originalTopRow": 120,
   "parentColumnSpace": 17.9375,

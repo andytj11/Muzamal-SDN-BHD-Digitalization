@@ -33,10 +33,10 @@
   "mobileRightColumn": 37,
   "mobileTopRow": 0,
   "needsErrorInfo": false,
-  "originalBottomRow": 8,
-  "originalTopRow": 4,
+  "originalBottomRow": 20,
+  "originalTopRow": 16,
   "overflow": "NONE",
-  "parentId": "vk2nex3s6p",
+  "parentId": "ajecemjcw7",
   "renderMode": "CANVAS",
   "responsiveBehavior": "fill",
   "rightColumn": 23,
@@ -48,6 +48,6 @@
   "truncateButtonColor": "{{appsmith.theme.colors.primaryColor}}",
   "type": "TEXT_WIDGET",
   "version": 1,
-  "widgetId": "5yoe7uhtbs",
+  "widgetId": "y2tppqgptx",
   "widgetName": "Department"
 }

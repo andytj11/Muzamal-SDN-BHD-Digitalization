@@ -1,0 +1,20 @@
+{
+  "gitSyncId": "689d89d0c8cfcc46e1c3653b_aea06907-6608-43bc-8eb9-cd4f45e122c0",
+  "id": "Review OFI_ReviewActions",
+  "unpublishedCollection": {
+    "name": "ReviewActions",
+    "pageId": "Review OFI",
+    "pluginId": "js-plugin",
+    "pluginType": "JS",
+    "variables": [
+      {
+        "name": "stage",
+        "value": "\"red\""
+      },
+      {
+        "name": "roles",
+        "value": "[\"reviewer\", \"approver\", \"assigned_to\", \"attention_to\"]"
+      }
+    ]
+  }
+}

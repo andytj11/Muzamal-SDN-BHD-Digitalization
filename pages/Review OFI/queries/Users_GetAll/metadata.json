@@ -72,7 +72,7 @@
     "dynamicBindingPathList": [],
     "name": "Users_GetAll",
     "pageId": "Review OFI",
-    "runBehaviour": "MANUAL",
+    "runBehaviour": "AUTOMATIC",
     "userSetOnLoad": false
   }
 }

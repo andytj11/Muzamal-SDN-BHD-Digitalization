@@ -29,7 +29,7 @@
           "data": ""
         },
         "rowObjects": {
-          "data": "{\n\t\"id\": {{ \"I\" + Date.now() }},\n\t\"title\": {{ Input_Title.text }},\n\t\"description\": {{ OFIInput.text }},\n\t\"issuer_id\": {{ IssuedBySelect.selectedOptionValue }},\n\t\"pic_user_id\": {{ AssignedToSelect.selectedOptionValue }},\n\t\"reviewer_user_id\": {{ ApprovedBySelect.selectedOptionValue }},\n\t\"department\": {{ DepartmentSelect.selectedOptionValue }},\n\t\"date_issued\": {{ Utils.todayISO() }},\n\t\"reply_due_date\": {{ Utils.addWorkingDays(Utils.todayISO(), 7, Holidays_GetAll.data) }},\n\t\"status\": \"Awaiting PIC Reply\"\n}\n"
+          "data": "{\n\t\"id\": {{ \"I\" + Date.now() }},\n\t\"title\": {{ Input_Title.text }},\n\t\"description\": {{ OFITextArea.text }},\n\t\"issuer_id\": {{ IssuedBySelect.selectedOptionValue }},\n\t\"pic_user_id\": {{ AssignedToSelect.selectedOptionValue }},\n\t\"reviewer_user_id\": {{ ApprovedBySelect.selectedOptionValue }},\n\t\"department\": {{ DepartmentSelect.selectedOptionValue }},\n\t\"date_issued\": {{ Utils.todayISO() }},\n\t\"reply_due_date\": {{ Utils.addWorkingDays(Utils.todayISO(), 7, Holidays_GetAll.data) }},\n\t\"status\": \"Awaiting PIC Reply\"\n}\n"
         },
         "sheetName": {
           "data": "issues"

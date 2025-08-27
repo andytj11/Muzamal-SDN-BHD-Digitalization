@@ -4,7 +4,7 @@
   "borderColor": "#E0DEDE",
   "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
   "borderWidth": "1",
-  "bottomRow": 199,
+  "bottomRow": 203,
   "boxShadow": "0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)",
   "children": [
     {
@@ -70,8 +70,8 @@
   "mobileRightColumn": 40,
   "mobileTopRow": 155,
   "needsErrorInfo": false,
-  "originalBottomRow": 199,
-  "originalTopRow": 132,
+  "originalBottomRow": 203,
+  "originalTopRow": 136,
   "parentColumnSpace": 17.9375,
   "parentId": "0",
   "parentRowSpace": 10,
@@ -80,7 +80,7 @@
   "responsiveBehavior": "fill",
   "rightColumn": 46,
   "shouldScrollContents": true,
-  "topRow": 132,
+  "topRow": 136,
   "type": "STATBOX_WIDGET",
   "widgetId": "d6m1uz5poh",
   "widgetName": "FindingAttachmentBox"

@@ -9,13 +9,28 @@
   "dynamicBindingPathList": [
     {
       "key": "borderRadius"
+    },
+    {
+      "key": "isVisible"
     }
   ],
-  "dynamicTriggerPathList": [],
+  "dynamicPropertyPathList": [
+    {
+      "key": "onClick"
+    },
+    {
+      "key": "isVisible"
+    }
+  ],
+  "dynamicTriggerPathList": [
+    {
+      "key": "onClick"
+    }
+  ],
   "isDefaultClickDisabled": true,
   "isDisabled": false,
   "isLoading": false,
-  "isVisible": true,
+  "isVisible": "{{ !ReviewOFi.isAttentionApproved() }}",
   "key": "bvv0z8gani",
   "leftColumn": 43,
   "minWidth": 120,
@@ -24,6 +39,7 @@
   "mobileRightColumn": 53,
   "mobileTopRow": 61,
   "needsErrorInfo": false,
+  "onClick": "{{ ReviewOFi.commentAttention() }}",
   "originalBottomRow": 151,
   "originalTopRow": 147,
   "parentColumnSpace": 17.9375,
