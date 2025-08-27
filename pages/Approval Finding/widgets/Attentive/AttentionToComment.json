@@ -3,22 +3,33 @@
   "animateLoading": true,
   "autoFocus": false,
   "borderRadius": "0.375rem",
-  "bottomRow": 18,
+  "bottomRow": 19,
   "boxShadow": "0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)",
-  "defaultText": "",
+  "defaultText": "{{ ReviewActions.getSignoff('attention_to').comment || \"\" }}",
   "dynamicBindingPathList": [
     {
       "key": "accentColor"
+    },
+    {
+      "key": "isVisible"
+    },
+    {
+      "key": "defaultText"
     }
   ],
   "dynamicHeight": "AUTO_HEIGHT",
+  "dynamicPropertyPathList": [
+    {
+      "key": "isVisible"
+    }
+  ],
   "dynamicTriggerPathList": [],
   "iconAlign": "left",
   "inputType": "MULTI_LINE_TEXT",
   "isDisabled": false,
   "isLoading": false,
   "isRequired": false,
-  "isVisible": true,
+  "isVisible": "{{ !ReviewActions.isApproved('attention_to') }}",
   "key": "atgpnvxr5w",
   "label": "",
   "labelAlignment": "left",
@@ -35,8 +46,8 @@
   "mobileRightColumn": 44,
   "mobileTopRow": 69,
   "needsErrorInfo": false,
-  "originalBottomRow": 18,
-  "originalTopRow": 10,
+  "originalBottomRow": 19,
+  "originalTopRow": 11,
   "parentColumnSpace": 17.9375,
   "parentId": "y3vbscj1gt",
   "parentRowSpace": 10,
@@ -47,7 +58,7 @@
   "rightColumn": 63,
   "shouldAllowAutofill": false,
   "showStepArrows": false,
-  "topRow": 10,
+  "topRow": 11,
   "type": "INPUT_WIDGET_V2",
   "version": 2,
   "widgetId": "c8l7uihla7",

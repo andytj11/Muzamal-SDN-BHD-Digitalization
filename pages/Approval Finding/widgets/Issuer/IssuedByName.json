@@ -1,7 +1,7 @@
 {
   "animateLoading": true,
   "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
-  "bottomRow": 5,
+  "bottomRow": 6,
   "dynamicBindingPathList": [
     {
       "key": "truncateButtonColor"
@@ -13,7 +13,7 @@
       "key": "text"
     }
   ],
-  "dynamicHeight": "AUTO_HEIGHT",
+  "dynamicHeight": "FIXED",
   "dynamicTriggerPathList": [],
   "fontFamily": "Nunito Sans",
   "fontSize": "0.875rem",
@@ -30,17 +30,15 @@
   "mobileRightColumn": 34,
   "mobileTopRow": 39,
   "needsErrorInfo": false,
-  "originalBottomRow": 90,
-  "originalTopRow": 86,
   "overflow": "NONE",
   "parentColumnSpace": 17.9375,
   "parentId": "96ydtzofzm",
   "parentRowSpace": 10,
   "renderMode": "CANVAS",
   "responsiveBehavior": "fill",
-  "rightColumn": 39,
+  "rightColumn": 33,
   "shouldTruncate": false,
-  "text": "{{ ReviewActions.header().reviewer_name || \"-\" }}extract name and role",
+  "text": "{{ (ReviewActions.header().issued_by_name || \"-\") + \" - \" + (UserLookup.position(ReviewActions.header().issued_by_user_id)) + \"\" }}",
   "textAlign": "LEFT",
   "textColor": "#18181b",
   "topRow": 1,

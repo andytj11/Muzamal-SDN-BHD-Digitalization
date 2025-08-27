@@ -78,7 +78,7 @@
     ],
     "name": "Approvals_GetByForm",
     "pageId": "Approval Finding",
-    "runBehaviour": "MANUAL",
+    "runBehaviour": "AUTOMATIC",
     "userSetOnLoad": false
   }
 }

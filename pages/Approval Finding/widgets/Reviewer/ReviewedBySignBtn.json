@@ -2,6 +2,7 @@
   "animateLoading": true,
   "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
   "bottomRow": 5,
+  "bottomRowBeforeCollapse": 5,
   "boxShadow": "0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)",
   "buttonColor": "#86efac",
   "buttonVariant": "PRIMARY",
@@ -9,11 +10,17 @@
   "dynamicBindingPathList": [
     {
       "key": "borderRadius"
+    },
+    {
+      "key": "isVisible"
     }
   ],
   "dynamicPropertyPathList": [
     {
       "key": "onClick"
+    },
+    {
+      "key": "isVisible"
     }
   ],
   "dynamicTriggerPathList": [
@@ -26,7 +33,7 @@
   "isDefaultClickDisabled": true,
   "isDisabled": false,
   "isLoading": false,
-  "isVisible": true,
+  "isVisible": "{{ !ReviewActions.isApproved('reviewer') }}\n",
   "key": "bvv0z8gani",
   "leftColumn": 40,
   "minWidth": 120,
@@ -35,9 +42,9 @@
   "mobileRightColumn": 53,
   "mobileTopRow": 61,
   "needsErrorInfo": false,
-  "onClick": "{{ ReviewActions.approve('reviewer') }}",
-  "originalBottomRow": 13,
-  "originalTopRow": 9,
+  "onClick": "{{ReviewActions.approve('reviewer') }}",
+  "originalBottomRow": 5,
+  "originalTopRow": 1,
   "parentColumnSpace": 17.9375,
   "parentId": "n39oy70m8v",
   "parentRowSpace": 10,
@@ -49,6 +56,7 @@
   "rightColumn": 63,
   "text": "Approve here.",
   "topRow": 1,
+  "topRowBeforeCollapse": 1,
   "type": "BUTTON_WIDGET",
   "version": 1,
   "widgetId": "ecqowmmrxb",
