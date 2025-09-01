@@ -1,4 +1,6 @@
-# Muza-Mal-SDN-BHD-Digitalization![](https://raw.githubusercontent.com/appsmithorg/appsmith/release/static/appsmith_logo_primary.png)
+# Muza-Mal-SDN-BHD-Digitalization
+
+<img width="906" height="1440" alt="image" src="https://github.com/user-attachments/assets/1a418a2a-560b-4e0c-a0bd-9103c3cda976" />
 
 This app is built using Appsmith. Turn any datasource into an internal app in minutes. Appsmith lets you drag-and-drop components to build dashboards, write logic with JavaScript objects and connect to any API, database or GraphQL source.
 
