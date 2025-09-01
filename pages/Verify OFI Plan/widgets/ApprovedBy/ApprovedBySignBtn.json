@@ -2,6 +2,7 @@
   "animateLoading": true,
   "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
   "bottomRow": 5,
+  "bottomRowBeforeCollapse": 5,
   "boxShadow": "none",
   "buttonColor": "#86efac",
   "buttonVariant": "PRIMARY",
@@ -9,15 +10,30 @@
   "dynamicBindingPathList": [
     {
       "key": "borderRadius"
+    },
+    {
+      "key": "isVisible"
     }
   ],
-  "dynamicTriggerPathList": [],
+  "dynamicPropertyPathList": [
+    {
+      "key": "onClick"
+    },
+    {
+      "key": "isVisible"
+    }
+  ],
+  "dynamicTriggerPathList": [
+    {
+      "key": "onClick"
+    }
+  ],
   "iconAlign": "left",
   "iconName": "tick",
   "isDefaultClickDisabled": true,
   "isDisabled": false,
   "isLoading": false,
-  "isVisible": true,
+  "isVisible": "{{ !VerifyOFI.isApproverApproved() }}",
   "key": "bvv0z8gani",
   "leftColumn": 41,
   "minWidth": 120,
@@ -26,8 +42,9 @@
   "mobileRightColumn": 53,
   "mobileTopRow": 61,
   "needsErrorInfo": false,
-  "originalBottomRow": 124,
-  "originalTopRow": 120,
+  "onClick": "{{ VerifyOFI.approve('approver') }}",
+  "originalBottomRow": 5,
+  "originalTopRow": 1,
   "parentColumnSpace": 17.9375,
   "parentId": "28t09038yv",
   "parentRowSpace": 10,
@@ -39,6 +56,7 @@
   "rightColumn": 63,
   "text": "Approve here.",
   "topRow": 1,
+  "topRowBeforeCollapse": 1,
   "type": "BUTTON_WIDGET",
   "version": 1,
   "widgetId": "l88cxunr46",

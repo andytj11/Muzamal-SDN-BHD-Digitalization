@@ -3,9 +3,9 @@
   "animateLoading": true,
   "autoFocus": false,
   "borderRadius": "0.375rem",
-  "bottomRow": 19,
+  "bottomRow": 22,
   "boxShadow": "0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)",
-  "defaultText": "{{ ReviewActions.getSignoff('assigned_to').comment || \"\" }}",
+  "defaultText": "{{ ReviewActions.redLatestComment('assigned_to') }}",
   "dynamicBindingPathList": [
     {
       "key": "accentColor"
@@ -58,7 +58,7 @@
   "rightColumn": 63,
   "shouldAllowAutofill": false,
   "showStepArrows": false,
-  "topRow": 11,
+  "topRow": 14,
   "type": "INPUT_WIDGET_V2",
   "version": 2,
   "widgetId": "ef5wll8i9q",

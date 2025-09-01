@@ -4,7 +4,7 @@
   "borderColor": "#E0DEDE",
   "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
   "borderWidth": "1",
-  "bottomRow": 270,
+  "bottomRow": 284,
   "boxShadow": "0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)",
   "children": [
     {
@@ -38,7 +38,7 @@
       "mobileTopRow": 0,
       "needsErrorInfo": false,
       "parentColumnSpace": 1,
-      "parentId": "w6norgeehs",
+      "parentId": "5fvobrkbkx",
       "parentRowSpace": 1,
       "renderMode": "CANVAS",
       "responsiveBehavior": "fill",
@@ -46,7 +46,7 @@
       "topRow": 0,
       "type": "CANVAS_WIDGET",
       "version": 1,
-      "widgetId": "tb0nbszh41",
+      "widgetId": "6uc5r5mp6h",
       "widgetName": "Canvas7Copy"
     }
   ],
@@ -70,8 +70,8 @@
   "mobileRightColumn": 40,
   "mobileTopRow": 155,
   "needsErrorInfo": false,
-  "originalBottomRow": 270,
-  "originalTopRow": 203,
+  "originalBottomRow": 284,
+  "originalTopRow": 217,
   "parentColumnSpace": 17.9375,
   "parentId": "0",
   "parentRowSpace": 10,
@@ -80,8 +80,8 @@
   "responsiveBehavior": "fill",
   "rightColumn": 46,
   "shouldScrollContents": true,
-  "topRow": 203,
+  "topRow": 217,
   "type": "STATBOX_WIDGET",
-  "widgetId": "w6norgeehs",
+  "widgetId": "5fvobrkbkx",
   "widgetName": "OFIAttachmentBox"
 }

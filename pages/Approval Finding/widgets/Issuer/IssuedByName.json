@@ -38,7 +38,7 @@
   "responsiveBehavior": "fill",
   "rightColumn": 33,
   "shouldTruncate": false,
-  "text": "{{ (ReviewActions.header().issued_by_name || \"-\") + \" - \" + (UserLookup.position(ReviewActions.header().issued_by_user_id)) + \"\" }}",
+  "text": "{{ (ReviewActions.header().issued_by_name || \"\") + \" - \" + (UserLookup.position(ReviewActions.header().issued_by_user_id)) + \"\" }}",
   "textAlign": "LEFT",
   "textColor": "#18181b",
   "topRow": 1,

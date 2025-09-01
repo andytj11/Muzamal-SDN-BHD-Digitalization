@@ -1,0 +1,20 @@
+{
+  "gitSyncId": "689d89d0c8cfcc46e1c3653b_e342c7ad-6b2a-4d42-9917-877012fd696a",
+  "id": "Verify OFI Evidence_ReviewOFi",
+  "unpublishedCollection": {
+    "name": "ReviewOFi",
+    "pageId": "Verify OFI Evidence",
+    "pluginId": "js-plugin",
+    "pluginType": "JS",
+    "variables": [
+      {
+        "name": "stage",
+        "value": "\"blue\""
+      },
+      {
+        "name": "_userIx",
+        "value": "null"
+      }
+    ]
+  }
+}

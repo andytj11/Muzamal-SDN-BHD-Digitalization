@@ -8,6 +8,9 @@
     },
     {
       "key": "borderRadius"
+    },
+    {
+      "key": "text"
     }
   ],
   "dynamicHeight": "AUTO_HEIGHT",
@@ -18,7 +21,7 @@
   "isLoading": false,
   "isVisible": true,
   "key": "2l3kskb1cl",
-  "leftColumn": 15,
+  "leftColumn": 17,
   "maxDynamicHeight": 9000,
   "minDynamicHeight": 4,
   "minWidth": 450,
@@ -31,19 +34,19 @@
   "originalTopRow": 5,
   "overflow": "NONE",
   "parentColumnSpace": 17.9375,
-  "parentId": "h9v1q12g7r",
+  "parentId": "f4sm06mt6k",
   "parentRowSpace": 10,
   "renderMode": "CANVAS",
   "responsiveBehavior": "fill",
-  "rightColumn": 40,
+  "rightColumn": 43,
   "shouldTruncate": false,
-  "text": "Today's date",
+  "text": "{{ moment().format('YYYY-MM-DD') }}",
   "textAlign": "LEFT",
   "textColor": "#18181b",
   "topRow": 5,
   "truncateButtonColor": "{{appsmith.theme.colors.primaryColor}}",
   "type": "TEXT_WIDGET",
   "version": 1,
-  "widgetId": "90v8g6f7r4",
+  "widgetId": "885qtqvdqf",
   "widgetName": "ReviewedByDate"
 }

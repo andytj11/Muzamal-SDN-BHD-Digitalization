@@ -1,0 +1,16 @@
+{
+  "gitSyncId": "689d89d0c8cfcc46e1c3653b_1278e602-43a9-4a4a-8782-c88ef0074b50",
+  "id": "Report Overview_OverviewData",
+  "unpublishedCollection": {
+    "name": "OverviewData",
+    "pageId": "Report Overview",
+    "pluginId": "js-plugin",
+    "pluginType": "JS",
+    "variables": [
+      {
+        "name": "_userIx",
+        "value": "null"
+      }
+    ]
+  }
+}

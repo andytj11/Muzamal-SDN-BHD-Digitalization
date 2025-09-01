@@ -4,12 +4,12 @@
   "borderColor": "#E0DEDE",
   "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
   "borderWidth": "1",
-  "bottomRow": 84,
+  "bottomRow": 86,
   "boxShadow": "0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)",
   "children": [
     {
       "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
-      "bottomRow": 170,
+      "bottomRow": 150,
       "boxShadow": "{{appsmith.theme.boxShadow.appBoxShadow}}",
       "canExtend": false,
       "containerStyle": "none",
@@ -38,7 +38,7 @@
       "mobileTopRow": 0,
       "needsErrorInfo": false,
       "parentColumnSpace": 1,
-      "parentId": "3g1mb52xhn",
+      "parentId": "06xuo2z9cr",
       "parentRowSpace": 1,
       "renderMode": "CANVAS",
       "responsiveBehavior": "fill",
@@ -46,7 +46,7 @@
       "topRow": 0,
       "type": "CANVAS_WIDGET",
       "version": 1,
-      "widgetId": "ym4lmd9he1",
+      "widgetId": "dylwhczbv5",
       "widgetName": "Canvas5"
     }
   ],
@@ -70,8 +70,8 @@
   "mobileRightColumn": 40,
   "mobileTopRow": 89,
   "needsErrorInfo": false,
-  "originalBottomRow": 84,
-  "originalTopRow": 67,
+  "originalBottomRow": 86,
+  "originalTopRow": 71,
   "parentColumnSpace": 17.9375,
   "parentId": "0",
   "parentRowSpace": 10,
@@ -80,8 +80,8 @@
   "responsiveBehavior": "fill",
   "rightColumn": 46,
   "shouldScrollContents": true,
-  "topRow": 67,
+  "topRow": 71,
   "type": "STATBOX_WIDGET",
-  "widgetId": "3g1mb52xhn",
+  "widgetId": "06xuo2z9cr",
   "widgetName": "OpportunitiesForImprove"
 }

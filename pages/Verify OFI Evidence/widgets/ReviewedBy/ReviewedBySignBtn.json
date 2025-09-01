@@ -2,6 +2,7 @@
   "animateLoading": true,
   "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
   "bottomRow": 5,
+  "bottomRowBeforeCollapse": 5,
   "boxShadow": "none",
   "buttonColor": "#86efac",
   "buttonVariant": "PRIMARY",
@@ -9,27 +10,43 @@
   "dynamicBindingPathList": [
     {
       "key": "borderRadius"
+    },
+    {
+      "key": "isVisible"
     }
   ],
-  "dynamicTriggerPathList": [],
+  "dynamicPropertyPathList": [
+    {
+      "key": "onClick"
+    },
+    {
+      "key": "isVisible"
+    }
+  ],
+  "dynamicTriggerPathList": [
+    {
+      "key": "onClick"
+    }
+  ],
   "iconAlign": "left",
   "iconName": "tick",
   "isDefaultClickDisabled": true,
   "isDisabled": false,
   "isLoading": false,
-  "isVisible": true,
+  "isVisible": "{{ !VerifyOFI.isYellowReviewerApproved() }}",
   "key": "bvv0z8gani",
-  "leftColumn": 41,
+  "leftColumn": 44,
   "minWidth": 120,
   "mobileBottomRow": 65,
   "mobileLeftColumn": 37,
   "mobileRightColumn": 53,
   "mobileTopRow": 61,
   "needsErrorInfo": false,
-  "originalBottomRow": 124,
-  "originalTopRow": 120,
+  "onClick": "{{ VerifyOFI.approveYellow('reviewer') }}",
+  "originalBottomRow": 5,
+  "originalTopRow": 1,
   "parentColumnSpace": 17.9375,
-  "parentId": "h9v1q12g7r",
+  "parentId": "f4sm06mt6k",
   "parentRowSpace": 10,
   "placement": "CENTER",
   "recaptchaType": "V3",
@@ -39,8 +56,9 @@
   "rightColumn": 63,
   "text": "Approve here.",
   "topRow": 1,
+  "topRowBeforeCollapse": 1,
   "type": "BUTTON_WIDGET",
   "version": 1,
-  "widgetId": "l1znpeuhpn",
+  "widgetId": "ud8sa63hq5",
   "widgetName": "ReviewedBySignBtn"
 }

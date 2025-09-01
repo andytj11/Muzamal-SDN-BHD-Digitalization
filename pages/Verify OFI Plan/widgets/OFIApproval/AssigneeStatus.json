@@ -11,6 +11,9 @@
     },
     {
       "key": "borderRadius"
+    },
+    {
+      "key": "text"
     }
   ],
   "dynamicHeight": "AUTO_HEIGHT",
@@ -38,9 +41,9 @@
   "responsiveBehavior": "fill",
   "rightColumn": 45,
   "shouldTruncate": false,
-  "text": "(extract assignee status)",
+  "text": "{{ VerifyOFI.assigneeOfiStatus() }}",
   "textAlign": "LEFT",
-  "textColor": "#18181b",
+  "textColor": "#b91c1c",
   "topRow": 4,
   "truncateButtonColor": "{{appsmith.theme.colors.primaryColor}}",
   "type": "TEXT_WIDGET",

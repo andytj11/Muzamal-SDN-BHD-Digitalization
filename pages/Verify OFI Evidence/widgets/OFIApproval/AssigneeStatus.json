@@ -11,6 +11,9 @@
     },
     {
       "key": "borderRadius"
+    },
+    {
+      "key": "text"
     }
   ],
   "dynamicHeight": "AUTO_HEIGHT",
@@ -33,18 +36,18 @@
   "originalBottomRow": 20,
   "originalTopRow": 16,
   "overflow": "NONE",
-  "parentId": "bxoc0y2hbt",
+  "parentId": "rll09r2nhd",
   "renderMode": "CANVAS",
   "responsiveBehavior": "fill",
   "rightColumn": 45,
   "shouldTruncate": false,
-  "text": "(extract assignee status)",
+  "text": "{{ VerifyOFI.assigneeOfiStatus() }}",
   "textAlign": "LEFT",
   "textColor": "#18181b",
   "topRow": 4,
   "truncateButtonColor": "{{appsmith.theme.colors.primaryColor}}",
   "type": "TEXT_WIDGET",
   "version": 1,
-  "widgetId": "edfejnwh5b",
+  "widgetId": "n3o3t1m853",
   "widgetName": "AssigneeStatus"
 }

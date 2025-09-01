@@ -72,7 +72,7 @@
     "dynamicBindingPathList": [],
     "name": "Users_GetAll",
     "pageId": "Verify OFI Plan",
-    "runBehaviour": "MANUAL",
+    "runBehaviour": "AUTOMATIC",
     "userSetOnLoad": false
   }
 }

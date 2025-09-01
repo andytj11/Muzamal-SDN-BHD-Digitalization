@@ -1,0 +1,11 @@
+{
+  "gitSyncId": "689d89d0c8cfcc46e1c3653b_a39bbe38-f14b-4f76-93a4-026abb815ee1",
+  "id": "Approval Finding_AuthTools",
+  "unpublishedCollection": {
+    "name": "AuthTools",
+    "pageId": "Approval Finding",
+    "pluginId": "js-plugin",
+    "pluginType": "JS",
+    "variables": []
+  }
+}

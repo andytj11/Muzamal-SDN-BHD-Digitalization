@@ -9,11 +9,11 @@
     "variables": [
       {
         "name": "stage",
-        "value": "\"red\""
+        "value": "\"blue\""
       },
       {
-        "name": "roles",
-        "value": "[\"reviewer\", \"approver\", \"assigned_to\", \"attention_to\"]"
+        "name": "role",
+        "value": "\"attention_to\""
       }
     ]
   }

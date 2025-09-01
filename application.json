@@ -41,7 +41,11 @@
       "isDefault": false
     },
     {
-      "id": "Overview",
+      "id": "Report Overview",
+      "isDefault": false
+    },
+    {
+      "id": "Verify OFI Plan Copy",
       "isDefault": false
     }
   ],

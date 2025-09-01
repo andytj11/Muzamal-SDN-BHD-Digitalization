@@ -8,6 +8,9 @@
     },
     {
       "key": "borderRadius"
+    },
+    {
+      "key": "text"
     }
   ],
   "dynamicHeight": "AUTO_HEIGHT",
@@ -37,7 +40,7 @@
   "responsiveBehavior": "fill",
   "rightColumn": 40,
   "shouldTruncate": false,
-  "text": "(get name and role)",
+  "text": "{{ VerifyOFI.reviewerName() + \" - \" + (VerifyOFI.reviewerPosition() ) }}",
   "textAlign": "LEFT",
   "textColor": "#231f20",
   "topRow": 1,

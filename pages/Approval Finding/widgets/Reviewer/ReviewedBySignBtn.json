@@ -35,7 +35,7 @@
   "isLoading": false,
   "isVisible": "{{ !ReviewActions.isApproved('reviewer') }}\n",
   "key": "bvv0z8gani",
-  "leftColumn": 40,
+  "leftColumn": 44,
   "minWidth": 120,
   "mobileBottomRow": 65,
   "mobileLeftColumn": 37,

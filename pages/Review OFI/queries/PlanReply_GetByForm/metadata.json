@@ -54,7 +54,7 @@
               {
                 "condition": "EQ",
                 "key": "form_id",
-                "value": "{{ ReviewOFi.formId() }}"
+                "value": "{{ this.params?.form_id || ObservationForms_ByNo.data?.[0]?.form_id }}"
               }
             ],
             "condition": "AND"
@@ -78,7 +78,7 @@
     ],
     "name": "PlanReply_GetByForm",
     "pageId": "Review OFI",
-    "runBehaviour": "MANUAL",
+    "runBehaviour": "AUTOMATIC",
     "userSetOnLoad": false
   }
 }

@@ -1,0 +1,16 @@
+{
+  "gitSyncId": "689d89d0c8cfcc46e1c3653b_1308797d-884f-4ddf-97cc-453b4a81a535",
+  "id": "Verify OFI Plan Copy_UserLookup",
+  "unpublishedCollection": {
+    "name": "UserLookup",
+    "pageId": "Verify OFI Plan Copy",
+    "pluginId": "js-plugin",
+    "pluginType": "JS",
+    "variables": [
+      {
+        "name": "_ix",
+        "value": "null"
+      }
+    ]
+  }
+}

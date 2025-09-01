@@ -1,5 +1,5 @@
 {
-  "gitSyncId": "689d89d0c8cfcc46e1c3653b_ced35b0e-7b98-47d2-9946-8670b0c6931c",
+  "gitSyncId": "689d89d0c8cfcc46e1c3653b_eb304665-3a43-4a1e-a44d-879de740bc86",
   "id": "Verify OFI Evidence_Users_GetAll",
   "pluginId": "google-sheets-plugin",
   "pluginType": "SAAS",
@@ -72,7 +72,7 @@
     "dynamicBindingPathList": [],
     "name": "Users_GetAll",
     "pageId": "Verify OFI Evidence",
-    "runBehaviour": "MANUAL",
+    "runBehaviour": "AUTOMATIC",
     "userSetOnLoad": false
   }
 }

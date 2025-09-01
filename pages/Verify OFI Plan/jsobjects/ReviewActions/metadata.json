@@ -8,12 +8,8 @@
     "pluginType": "JS",
     "variables": [
       {
-        "name": "stage",
-        "value": "\"red\""
-      },
-      {
-        "name": "roles",
-        "value": "[\"reviewer\", \"approver\", \"assigned_to\", \"attention_to\"]"
+        "name": "_userIx",
+        "value": "null"
       }
     ]
   }

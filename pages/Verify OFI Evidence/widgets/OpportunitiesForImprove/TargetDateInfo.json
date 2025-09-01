@@ -1,7 +1,7 @@
 {
   "animateLoading": true,
   "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
-  "bottomRow": 15,
+  "bottomRow": 13,
   "dynamicBindingPathList": [
     {
       "key": "truncateButtonColor"
@@ -11,6 +11,9 @@
     },
     {
       "key": "borderRadius"
+    },
+    {
+      "key": "text"
     }
   ],
   "dynamicHeight": "AUTO_HEIGHT",
@@ -33,18 +36,18 @@
   "originalBottomRow": 8,
   "originalTopRow": 4,
   "overflow": "NONE",
-  "parentId": "ym4lmd9he1",
+  "parentId": "dylwhczbv5",
   "renderMode": "CANVAS",
   "responsiveBehavior": "fill",
   "rightColumn": 44,
   "shouldTruncate": false,
-  "text": "(extract target date)",
+  "text": "{{ VerifyOFI.ofiTargetDate() }}",
   "textAlign": "LEFT",
   "textColor": "#18181b",
-  "topRow": 11,
+  "topRow": 9,
   "truncateButtonColor": "{{appsmith.theme.colors.primaryColor}}",
   "type": "TEXT_WIDGET",
   "version": 1,
-  "widgetId": "n2z5csts2n",
+  "widgetId": "zjwdgzvvbe",
   "widgetName": "TargetDateInfo"
 }

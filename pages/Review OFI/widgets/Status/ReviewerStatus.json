@@ -43,7 +43,7 @@
   "shouldTruncate": false,
   "text": "{{ ReviewOFi.ackStatus('reviewer') }}",
   "textAlign": "LEFT",
-  "textColor": "#18181b",
+  "textColor": "#b91c1c",
   "topRow": 4,
   "truncateButtonColor": "{{appsmith.theme.colors.primaryColor}}",
   "type": "TEXT_WIDGET",

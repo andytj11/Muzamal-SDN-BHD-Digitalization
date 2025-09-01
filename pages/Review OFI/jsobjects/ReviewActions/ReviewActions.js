@@ -1,191 +1,196 @@
 export default {
-  // Which section is being signed (use "red" now; you can reuse for "blue"/"yellow" later)
-  stage: "red",
+  /* =========================
+   *  CONFIG (BLUE / attention_to)
+   * ========================= */
+  stage: "blue",
+  role: "attention_to",
 
-  // Roles that must sign
-  roles: ["reviewer", "approver", "assigned_to", "attention_to"],
+  /* =========================
+   *  HEADER (observationforms)
+   * ========================= */
+  header() {
+    return ObservationForms_ByNo.data?.[0] || {};
+  },
+  formId() {
+    return this.header().form_id || "";
+  },
+	
+  /* =========================
+   *  UTILITIES
+   * ========================= */
+  _norm(s) { return String(s ?? "").replace(/\s+/g, " ").trim().toLowerCase(); },
+  _same(a,b){ return this._norm(a) === this._norm(b); },
 
-  // -------- Header helpers (from observationforms via ObservationForms_ByNo) --------
-  header() { return ObservationForms_ByNo.data?.[0] || {}; },
-  formId() { return this.header().form_id || ""; },
-
-  // -------- Approvals data (from formsignedoff via Approvals_GetByForm) --------
+  /* =========================
+   *  SIGNOFFS (formsignedoff)
+   * ========================= */
   allSignoffs() { return Approvals_GetByForm.data || []; },
 
-  // Latest record for a role in this.stage (append-only, pick the most recent)
-  latest(role) {
-    const rows = (this.allSignoffs() || []).filter(
-      r => (r.stage || "") === this.stage && (r.role || "") === role
+  latestBlue(role = this.role) {
+    const rows = this.allSignoffs().filter(r => (r.stage||"")===this.stage && (r.role||"")===role);
+    if (!rows.length) return {};
+    return _.maxBy(rows, r => moment(r.approved_at || r.commented_at || r.created_at).valueOf()) || {};
+  },
+  blueApproved() { return (this.latestBlue().decision || "").toLowerCase() === "approved"; },
+
+  /* =========================
+   *  COMMENTS (BLUE) – same style as your commentbox
+   * ========================= */
+  _latestCommentRow(stage, role) {
+    const rows = (Approvals_GetByForm.data || []).filter(r =>
+      (r.stage||"") === stage &&
+      (r.role ||"") === role &&
+      (r.comment||"").trim() !== ""
     );
     if (!rows.length) return {};
-    return _.maxBy(
-      rows,
-      r => moment(r.approved_at || r.commented_at || r.created_at).valueOf()
-    ) || {};
+    return _.maxBy(rows, r => moment(r.commented_at || r.created_at).valueOf()) || {};
+  },
+  blueLatestComment() {
+    const row = this._latestCommentRow("blue","attention_to");
+    return (row && row.comment) ? row.comment : "";
   },
 
-  isApproved(role) {
-    return (this.latest(role).decision || "").toLowerCase() === "approved";
+  /* =========================
+   *  PLANREPLY (OFI) – latest row (mirror of comment logic)
+   * ========================= */
+  _planRowsRaw() {
+    const d = PlanReply_GetByForm?.data;
+    if (Array.isArray(d)) return d;
+    if (d && Array.isArray(d.data)) return d.data;
+    return [];
+  },
+  _planRowsForForm() {
+    const fid = this.formId();
+    const all = this._planRowsRaw();
+    if (!fid) return [];
+    return all.filter(r => this._same(r.form_id, fid));
+  },
+  _planRowTimestamp(r) {
+    // same priority idea, but for planreply rows
+    const t = r.updated_at || r.created_at || r.reply_by_date || r.reply_date || r.target_date || "";
+    const m = moment(t, ["YYYY-MM-DD HH:mm:ss","YYYY-MM-DD", moment.ISO_8601], true);
+    return m.isValid() ? m.valueOf() : 0;
+  },
+  _latestOfiRow() {
+    const rows = this._planRowsForForm();
+    if (!rows.length) return {};
+    return _.maxBy(rows, r => this._planRowTimestamp(r)) || {};
+  },
+  ofiLatestText() {
+    const r = this._latestOfiRow();
+    // accept either ofi_text (new) or reply_text (legacy)
+    return (r.ofi_text ?? r.reply_text ?? "") || "";
+  },
+  ofiLatestTargetDate(fmt = "YYYY-MM-DD") {
+    const r = this._latestOfiRow();
+    const d = r.target_date || r.reply_date || r.reply_by_date || "";
+    const m = moment(d, ["YYYY-MM-DD", moment.ISO_8601], true);
+    return m.isValid() ? m.format(fmt) : (d || "");
   },
 
-  // Derive page status from current decisions (no header update needed)
+  /* =========================
+   *  STATUS (blue > red)
+   * ========================= */
   computedStatus() {
-		const all = Approvals_GetByForm.data || [];
+    const all = this.allSignoffs();
+    const latest = (stage, role) => {
+      const rows = all.filter(r => (r.stage||"")===stage && (r.role||"")===role);
+      if (!rows.length) return {};
+      return _.maxBy(rows, r => moment(r.approved_at || r.commented_at || r.created_at).valueOf()) || {};
+    };
 
-		// Helper: latest row by stage+role
-		const latest = (stage, role) => {
-			const rows = all.filter(r => (r.stage || "") === stage && (r.role || "") === role);
-			if (!rows.length) return {};
-			return _.maxBy(rows, r =>
-				moment(r.approved_at || r.commented_at || r.created_at).valueOf()
-			) || {};
-		};
+    // Blue attention approved → OFI APPROVED
+    const blueAtt = latest("blue","attention_to");
+    if ((blueAtt.decision || "").toLowerCase() === "approved") return "OFI APPROVED";
 
-		// 1) If the OFI (blue) is approved by Attention To → final status
-		const blueAttention = latest("blue", "attention_to");
-		if ((blueAttention.decision || "").toLowerCase() === "approved") {
-			return "OFI APPROVED";
-		}
+    // Else if red all approved → FINDING APPROVED
+    const redRoles = ["reviewer","approver","assigned_to","attention_to"];
+    const redAllApproved = redRoles.every(r => (latest("red", r).decision || "").toLowerCase()==="approved");
+    if (redAllApproved) return "FINDING APPROVED";
 
-		// 2) Otherwise, keep your existing finding status
-		const roles = ["reviewer", "approver", "assigned_to", "attention_to"];
-		const findingApproved = roles.every(
-			role => (latest("red", role).decision || "").toLowerCase() === "approved"
-		);
-		if (findingApproved) return "FINDING APPROVED";
+    return "OPEN";
+  },
 
-		// (Optionally: add intermediate states here if you want)
-		return "OPEN";
-	},
-
+  /* =========================
+   *  LOAD / REFRESH
+   * ========================= */
   async load() {
     await ObservationForms_ByNo.run();
-    if (!this.formId()) { showAlert("Observation number not found.", "warning"); return; }
-    await Approvals_GetByForm.run();   // pulls all sign-offs for this form
-  },
-
-  // -------- UI widget mapping (EDIT these IDs to match your page) --------
-  _widgets(role) {
-    const map = {
-      reviewer:    { pos: ReviewerPositionInput,  date: ReviewerDateInput,  cmt: ReviewedByComment },
-      approver:    { pos: ApproverPositionInput,  date: ApproverDateInput,  cmt: ApprovedByComment },
-      assigned_to: { pos: AssignedPositionInput,  date: AssignedDateInput,  cmt: AssignedToComment },
-      attention_to:{ pos: AttentionPositionInput, date: AttentionDateInput, cmt: AttentionComment }
-    };
-    return map[role];
-  },
-
-  // Keep only the position text (strip "Name - " or "Name – ")
-  cleanPosition(v) {
-    if (v == null) return "";
-    const s = String(v).replace(/\s*\n+\s*/g, " ").trim();
-    const cut = Math.max(s.lastIndexOf(" - "), s.lastIndexOf(" – "));
-    return cut > -1 ? s.slice(cut + 3).trim() : s;
-  },
-
-  // -------- Actions --------
-  async approve(role) {
     const fid = this.formId();
-    if (!fid) { showAlert("Load an Observation first.", "error"); return; }
+    if (!fid) { showAlert("Observation number not found.","warning"); return; }
+
+    // Pull the scoped datasets needed for comments + OFI
+    await Approvals_GetByForm.run({ form_id: fid });
+    await PlanReply_GetByForm.run({ form_id: fid });
+
+    // If the OFI TextArea rendered before data arrived, force a re-eval once
+    try {
+      if (typeof OFITextArea?.widgetName === "string") resetWidget(OFITextArea.widgetName, true);
+    } catch(e) {}
+  },
+
+  /* =========================
+   *  ACTIONS (BLUE)
+   * ========================= */
+  async approveAttention() {
+    const fid = this.formId();
+    if (!fid) { showAlert("Load an Observation first.","error"); return; }
 
     const h = this.header();
-
-    const nameByRole = {
-      reviewer: h.reviewer_name,
-      approver: h.approver_name,
-      assigned_to: h.assigned_to_name,
-      attention_to: h.attention_to_name
-    };
-    const idByRole = {
-      reviewer: h.reviewer_user_id,
-      approver: h.approver_user_id,
-      assigned_to: h.assigned_to_user_id,
-      attention_to: h.attention_to_user_id
-    };
-
-    const w = this._widgets(role);
-    if (!w) { showAlert(`Unknown role: ${role}`, "error"); return; }
-
-    // Prefer typed position; fallback to mapped position from Users
-    const mappedPos = UserLookup.position(idByRole[role]);
-    const rawPos    = (w.pos.text || mappedPos || "");
-    const position  = this.cleanPosition(rawPos);
-    if (!position) { showAlert("Position is required.", "error"); return; }
-
-    const action_date =
-      w.date?.formattedDate || w.date?.inputText || moment().format("YYYY-MM-DD");
+    // If you already have a position lookup, add it here; not required to return OFI text.
+    const position = ""; // optional on your blue page if not needed
 
     await Approvals_InsertOne.run({
       form_id: fid,
-      stage: this.stage,
-      role,
-      required_user_id:   idByRole[role]   || "",
-      required_user_name: nameByRole[role] || "",
-      name:               nameByRole[role] || "",
-      position,                    // position-only
-      action_date,
+      stage: "blue",
+      role: "attention_to",
+      required_user_id:   h.attention_to_user_id || "",
+      required_user_name: h.attention_to_name    || "",
+      name:               h.attention_to_name    || "",
+      position,
+      action_date: moment().format("YYYY-MM-DD"),
       decision: "Approved",
       comment: "",
       approved_at:  moment().format("YYYY-MM-DD HH:mm:ss"),
       commented_at: "",
       signed_by_user_id: appsmith.user.email,
-      created_at: moment().format("YYYY-MM-DD HH:mm:ss"),
-      updated_at: moment().format("YYYY-MM-DD HH:mm:ss")
+      created_at:  moment().format("YYYY-MM-DD HH:mm:ss"),
+      updated_at:  moment().format("YYYY-MM-DD HH:mm:ss"),
     });
 
-    await Approvals_GetByForm.run();
-    showAlert("Approved.", "success");
+    await Approvals_GetByForm.run({ form_id: fid });
+    showAlert("Superior approved the OFI.","success");
   },
 
-  async comment(role) {
+  async commentAttention() {
     const fid = this.formId();
-    if (!fid) { showAlert("Load an Observation first.", "error"); return; }
+    if (!fid) { showAlert("Load an Observation first.","error"); return; }
+
+    const comment = (typeof AttentionComment !== "undefined" ? (AttentionComment.text || "") : "").trim();
+    if (!comment) { showAlert("Please enter a comment.","warning"); return; }
 
     const h = this.header();
 
-    const nameByRole = {
-      reviewer: h.reviewer_name,
-      approver: h.approver_name,
-      assigned_to: h.assigned_to_name,
-      attention_to: h.attention_to_name
-    };
-    const idByRole = {
-      reviewer: h.reviewer_user_id,
-      approver: h.approver_user_id,
-      assigned_to: h.assigned_to_user_id,
-      attention_to: h.attention_to_user_id
-    };
-
-    const w = this._widgets(role);
-    if (!w) { showAlert(`Unknown role: ${role}`, "error"); return; }
-
-    const comment = (w.cmt.text || "").trim();
-    if (!comment) { showAlert("Please enter a comment.", "warning"); return; }
-
-    // Position for comment rows too (position-only)
-    const mappedPos = UserLookup.position(idByRole[role]);
-    const rawPos    = (w.pos?.text || mappedPos || "");
-    const position  = this.cleanPosition(rawPos);
-
     await Approvals_InsertOne.run({
       form_id: fid,
-      stage: this.stage,
-      role,
-      required_user_id:   idByRole[role]   || "",
-      required_user_name: nameByRole[role] || "",
-      name:               nameByRole[role] || "",
-      position,                    // position-only
+      stage: "blue",
+      role: "attention_to",
+      required_user_id:   h.attention_to_user_id || "",
+      required_user_name: h.attention_to_name    || "",
+      name:               h.attention_to_name    || "",
+      position: "",
       action_date: "",
       decision: "Not Approved",
       comment,
       approved_at:  "",
       commented_at: moment().format("YYYY-MM-DD HH:mm:ss"),
       signed_by_user_id: appsmith.user.email,
-      created_at: moment().format("YYYY-MM-DD HH:mm:ss"),
-      updated_at: moment().format("YYYY-MM-DD HH:mm:ss")
+      created_at:  moment().format("YYYY-MM-DD HH:mm:ss"),
+      updated_at:  moment().format("YYYY-MM-DD HH:mm:ss"),
     });
 
-    await Approvals_GetByForm.run();
-    showAlert("Comment submitted.", "success");
-  }
+    await Approvals_GetByForm.run({ form_id: fid });
+    if (typeof AttentionComment?.widgetName === "string") resetWidget(AttentionComment.widgetName, true);
+    showAlert("Superior comment submitted.","success");
+  },
 };

@@ -1,191 +1,267 @@
 export default {
-  // Which section is being signed (use "red" now; you can reuse for "blue"/"yellow" later)
-  stage: "red",
-
-  // Roles that must sign
-  roles: ["reviewer", "approver", "assigned_to", "attention_to"],
-
-  // -------- Header helpers (from observationforms via ObservationForms_ByNo) --------
-  header() { return ObservationForms_ByNo.data?.[0] || {}; },
-  formId() { return this.header().form_id || ""; },
-
-  // -------- Approvals data (from formsignedoff via Approvals_GetByForm) --------
-  allSignoffs() { return Approvals_GetByForm.data || []; },
-
-  // Latest record for a role in this.stage (append-only, pick the most recent)
-  latest(role) {
-    const rows = (this.allSignoffs() || []).filter(
-      r => (r.stage || "") === this.stage && (r.role || "") === role
+  /* -------------------- OBS / HEADER -------------------- */
+  obsNo() {
+    return (
+      (appsmith.URL.queryParams.obs || "").trim() ||
+      (typeof ObservationNoInput !== "undefined"
+        ? (ObservationNoInput.text || "").trim()
+        : "") ||
+      (ObservationForms_ByNo.data?.[0]?.observation_no || "")
     );
+  },
+  header() { return ObservationForms_ByNo.data?.[0] || {}; },
+  getFormId() { return this.header().form_id || ""; },
+
+  /* -------------------- USERS (positions) -------------------- */
+  _userIx: null,
+  _norm(s){ return String(s ?? "").replace(/\s+/g, " ").trim().toLowerCase(); },
+  _buildUserIndex(){
+    const ix = {};
+    (Users_GetAll.data || []).forEach(u=>{
+      const idK   = this._norm(u.id ?? u.user_id);
+      const nameK = this._norm(u.name);
+      const mailK = this._norm(u.email);
+      if (idK)   ix["id:"+idK] = u;
+      if (nameK) ix["name:"+nameK] = u;
+      if (mailK) ix["email:"+mailK] = u;
+    });
+    this._userIx = ix;
+    return ix;
+  },
+  _getUserByIdOrName(userId, name){
+    const ix = this._userIx || this._buildUserIndex();
+    const idK = this._norm(userId);
+    if (idK && ix["id:"+idK]) return ix["id:"+idK];
+    if (userId) {
+      const d = String(userId).match(/\d+/g);
+      if (d) {
+        const compact = String(parseInt(d.join(""),10));
+        if (ix["id:"+compact]) return ix["id:"+compact];
+      }
+    }
+    const nameK = this._norm(name);
+    if (nameK && ix["name:"+nameK]) return ix["name:"+nameK];
+    return {};
+  },
+  _pos(u){ return u.position || u.title || u.role || ""; },
+
+  reviewerName(){ return this.header().reviewer_name  || ""; },
+  approverName(){ return this.header().approver_name  || ""; },
+  reviewerPosition(){
+    const h=this.header();
+    const u=this._getUserByIdOrName(h.reviewer_user_id,h.reviewer_name);
+    return this._pos(u);
+  },
+  approverPosition(){
+    const h=this.header();
+    const u=this._getUserByIdOrName(h.approver_user_id,h.approver_name);
+    return this._pos(u);
+  },
+
+  /* -------------------- SIGNOFFS COMMON -------------------- */
+  signoffs(){ return Approvals_GetByForm.data || []; },
+  latest(stage, role){
+    const rows=this.signoffs().filter(r=>(r.stage||"")===stage && (r.role||"")===role);
+    if(!rows.length) return {};
+    return _.maxBy(rows, r => moment(r.approved_at || r.commented_at || r.created_at).valueOf()) || {};
+  },
+
+  /* ---------- BLUE (OFI) ACK ---------- */
+  blueAttentionApproved(){
+    return (this.latest("blue", "attention_to").decision || "").toLowerCase()==="approved";
+  },
+  attentionOfiStatus(){
+    const d=(this.latest("blue","attention_to").decision||"").toLowerCase();
+    if(d==="approved") return "Approved";
+    if(d==="not approved") return "Not Approved";
+    return "Pending";
+  },
+  assigneeOfiStatus(){
+    if(this.blueAttentionApproved()) return "Approved";
+    const d=(this.latest("blue","attention_to").decision||"");
+    return d ? "Not Approved" : "Pending";
+  },
+
+  /* ---------- BLACK (PLAN VERIFY) ---------- */
+  isReviewerApproved(){  // black reviewer
+    return (this.latest("black","reviewer").decision||"").toLowerCase()==="approved";
+  },
+  isApproverApproved(){  // black approver
+    return (this.latest("black","approver").decision||"").toLowerCase()==="approved";
+  },
+
+  async approve(role){ // black approve
+    const fid=this.getFormId();
+    if(!fid){ showAlert("No observation loaded.","error"); return; }
+    const h=this.header();
+    const who = role==="reviewer"
+      ? { id:h.reviewer_user_id, name:h.reviewer_name, position:this.reviewerPosition() }
+      : { id:h.approver_user_id, name:h.approver_name, position:this.approverPosition() };
+    if(!who.position){
+      showAlert(`Position not found for ${role}. Check users table.`,"error");
+      return;
+    }
+    await Approvals_InsertOne.run({
+      form_id: fid, stage:"black", role,
+      required_user_id: who.id || "", required_user_name: who.name || "",
+      name: who.name || "", position: who.position || "",
+      action_date: moment().format("YYYY-MM-DD"),
+      decision:"Approved", comment:"",
+      approved_at: moment().format("YYYY-MM-DD HH:mm:ss"),
+      commented_at:"", signed_by_user_id: appsmith.user.email,
+      created_at: moment().format("YYYY-MM-DD HH:mm:ss"),
+      updated_at: moment().format("YYYY-MM-DD HH:mm:ss")
+    });
+    await Approvals_GetByForm.run({ form_id: fid });
+    await this.syncHeaderStatus();
+  },
+  async comment(role, text){ // black comment
+    const fid=this.getFormId();
+    if(!fid){ showAlert("No observation loaded.","error"); return; }
+    const c=(text||"").trim(); if(!c){ showAlert("Please enter a comment.","warning"); return; }
+    const h=this.header();
+    const who = role==="reviewer"
+      ? { id:h.reviewer_user_id, name:h.reviewer_name, position:this.reviewerPosition() }
+      : { id:h.approver_user_id, name:h.approver_name, position:this.approverPosition() };
+    await Approvals_InsertOne.run({
+      form_id: fid, stage:"black", role,
+      required_user_id: who.id || "", required_user_name: who.name || "",
+      name: who.name || "", position: who.position || "",
+      action_date:"", decision:"Not Approved", comment:c,
+      approved_at:"", commented_at: moment().format("YYYY-MM-DD HH:mm:ss"),
+      signed_by_user_id: appsmith.user.email,
+      created_at: moment().format("YYYY-MM-DD HH:mm:ss"),
+      updated_at: moment().format("YYYY-MM-DD HH:mm:ss")
+    });
+    await Approvals_GetByForm.run({ form_id: fid });
+    await this.syncHeaderStatus();
+  },
+
+  /* ---------- OFI CONTENT (latest row from planreply) ---------- */
+  ofiLatest() {
+    // Picks the newest OFI row (by updated_at → created_at → reply_date)
+    const rows = (PlanReply_GetByForm.data || []).slice();
     if (!rows.length) return {};
-    return _.maxBy(
-      rows,
-      r => moment(r.approved_at || r.commented_at || r.created_at).valueOf()
-    ) || {};
+    rows.sort((a,b) => {
+      const va = moment(a.updated_at || a.created_at || a.reply_date).valueOf();
+      const vb = moment(b.updated_at || b.created_at || b.reply_date).valueOf();
+      return vb - va; // newest first
+    });
+    return rows[0] || {};
+  },
+  ofiText() {
+    return (this.ofiLatest().reply_text || "").trim();
+  },
+  ofiTargetDate() {
+    const r = this.ofiLatest();
+    const d = r.target_date || r.reply_date;
+    return d ? moment(d).format("YYYY-MM-DD") : "";
   },
 
-  isApproved(role) {
-    return (this.latest(role).decision || "").toLowerCase() === "approved";
+  /* ---------- YELLOW (EVIDENCE VERIFY)  ---------- */
+  isYellowReviewerApproved(){
+    return (this.latest("yellow","reviewer").decision||"").toLowerCase()==="approved";
+  },
+  isYellowApproverApproved(){
+    return (this.latest("yellow","approver").decision||"").toLowerCase()==="approved";
+  },
+  async approveYellow(role){
+    const fid=this.getFormId();
+    if(!fid){ showAlert("No observation loaded.","error"); return; }
+    const h=this.header();
+    const who = role==="reviewer"
+      ? { id:h.reviewer_user_id, name:h.reviewer_name, position:this.reviewerPosition() }
+      : { id:h.approver_user_id, name:h.approver_name, position:this.approverPosition() };
+    if(!who.position){
+      showAlert(`Position not found for ${role}. Check users table.`,"error");
+      return;
+    }
+    await Approvals_InsertOne.run({
+      form_id: fid, stage:"yellow", role,
+      required_user_id: who.id || "", required_user_name: who.name || "",
+      name: who.name || "", position: who.position || "",
+      action_date: moment().format("YYYY-MM-DD"),
+      decision:"Approved", comment:"",
+      approved_at: moment().format("YYYY-MM-DD HH:mm:ss"),
+      commented_at:"", signed_by_user_id: appsmith.user.email,
+      created_at: moment().format("YYYY-MM-DD HH:mm:ss"),
+      updated_at: moment().format("YYYY-MM-DD HH:mm:ss")
+    });
+    await Approvals_GetByForm.run({ form_id: fid });
+    await this.syncHeaderStatus();
+  },
+  async commentYellow(role, text){
+    const fid=this.getFormId();
+    if(!fid){ showAlert("No observation loaded.","error"); return; }
+    const c=(text||"").trim(); if(!c){ showAlert("Please enter a comment.","warning"); return; }
+    const h=this.header();
+    const who = role==="reviewer"
+      ? { id:h.reviewer_user_id, name:h.reviewer_name, position:this.reviewerPosition() }
+      : { id:h.approver_user_id, name:h.approver_name, position:this.approverPosition() };
+    await Approvals_InsertOne.run({
+      form_id: fid, stage:"yellow", role,
+      required_user_id: who.id || "", required_user_name: who.name || "",
+      name: who.name || "", position: who.position || "",
+      action_date:"", decision:"Not Approved", comment:c,
+      approved_at:"", commented_at: moment().format("YYYY-MM-DD HH:mm:ss"),
+      signed_by_user_id: appsmith.user.email,
+      created_at: moment().format("YYYY-MM-DD HH:mm:ss"),
+      updated_at: moment().format("YYYY-MM-DD HH:mm:ss")
+    });
+    await Approvals_GetByForm.run({ form_id: fid });
+    await this.syncHeaderStatus();
   },
 
-  // Derive page status from current decisions (no header update needed)
-  computedStatus() {
-		const all = Approvals_GetByForm.data || [];
+	/* -------------------- STATUS (GATED: bottom → top) -------------------- */
+	computedStatus(){
+		// Evaluate prerequisites from earliest stage upward
+		const blueOK   = this.blueAttentionApproved();                       // blue acknowledged
+		const blackOK  = this.isReviewerApproved() && this.isApproverApproved(); // plan approved (both)
+		const yellowOK = this.isYellowReviewerApproved() && this.isYellowApproverApproved(); // evidence approved (both)
 
-		// Helper: latest row by stage+role
-		const latest = (stage, role) => {
-			const rows = all.filter(r => (r.stage || "") === stage && (r.role || "") === role);
-			if (!rows.length) return {};
-			return _.maxBy(rows, r =>
-				moment(r.approved_at || r.commented_at || r.created_at).valueOf()
-			) || {};
-		};
+		if (!blueOK)   return "OPEN";                 // nothing can progress without blue
+		if (!blackOK)  return "OFI APPROVED";         // blue done, plan not fully approved
+		if (!yellowOK) return "OFI PLAN APPROVED";    // blue + black done, evidence not fully approved
 
-		// 1) If the OFI (blue) is approved by Attention To → final status
-		const blueAttention = latest("blue", "attention_to");
-		if ((blueAttention.decision || "").toLowerCase() === "approved") {
-			return "OFI APPROVED";
-		}
-
-		// 2) Otherwise, keep your existing finding status
-		const roles = ["reviewer", "approver", "assigned_to", "attention_to"];
-		const findingApproved = roles.every(
-			role => (latest("red", role).decision || "").toLowerCase() === "approved"
-		);
-		if (findingApproved) return "FINDING APPROVED";
-
-		// (Optionally: add intermediate states here if you want)
-		return "OPEN";
+		return "OFI EVIDENCE APPROVED";               // all stages satisfied
 	},
 
-  async load() {
+	statusForHeader(){
+		// Directly store the human-readable status string
+		return this.computedStatus();
+	},
+
+	async syncHeaderStatus(){
+		const fid = this.getFormId();
+		if (!fid) return;
+
+		const desired = this.statusForHeader();        // gated result
+		const current = this.header().status || "";
+		if (!desired || desired === current) return;
+
+		// Find row index for this form_id, then update by rowIndex
+		await ObservationForms_FindRowIndex.run({ form_id: fid });
+		const idx = ObservationForms_FindRowIndex.data?.[0]?.rowIndex;
+		if (idx === undefined || idx === null || Number.isNaN(Number(idx))) return;
+
+		await ObservationForms_UpdateByIndex.run({ rowIndex: idx, status: desired });
+		await ObservationForms_ByNo.run();
+	},
+
+
+  /* -------------------- INIT / REFRESH -------------------- */
+  async init(){
+    await Users_GetAll.run();
+    const currentObs=this.obsNo();
+    if(!currentObs) return;
+    await this.refresh();
+  },
+  async refresh(){
     await ObservationForms_ByNo.run();
-    if (!this.formId()) { showAlert("Observation number not found.", "warning"); return; }
-    await Approvals_GetByForm.run();   // pulls all sign-offs for this form
-  },
-
-  // -------- UI widget mapping (EDIT these IDs to match your page) --------
-  _widgets(role) {
-    const map = {
-      reviewer:    { pos: ReviewerPositionInput,  date: ReviewerDateInput,  cmt: ReviewedByComment },
-      approver:    { pos: ApproverPositionInput,  date: ApproverDateInput,  cmt: ApprovedByComment },
-      assigned_to: { pos: AssignedPositionInput,  date: AssignedDateInput,  cmt: AssignedToComment },
-      attention_to:{ pos: AttentionPositionInput, date: AttentionDateInput, cmt: AttentionComment }
-    };
-    return map[role];
-  },
-
-  // Keep only the position text (strip "Name - " or "Name – ")
-  cleanPosition(v) {
-    if (v == null) return "";
-    const s = String(v).replace(/\s*\n+\s*/g, " ").trim();
-    const cut = Math.max(s.lastIndexOf(" - "), s.lastIndexOf(" – "));
-    return cut > -1 ? s.slice(cut + 3).trim() : s;
-  },
-
-  // -------- Actions --------
-  async approve(role) {
-    const fid = this.formId();
-    if (!fid) { showAlert("Load an Observation first.", "error"); return; }
-
-    const h = this.header();
-
-    const nameByRole = {
-      reviewer: h.reviewer_name,
-      approver: h.approver_name,
-      assigned_to: h.assigned_to_name,
-      attention_to: h.attention_to_name
-    };
-    const idByRole = {
-      reviewer: h.reviewer_user_id,
-      approver: h.approver_user_id,
-      assigned_to: h.assigned_to_user_id,
-      attention_to: h.attention_to_user_id
-    };
-
-    const w = this._widgets(role);
-    if (!w) { showAlert(`Unknown role: ${role}`, "error"); return; }
-
-    // Prefer typed position; fallback to mapped position from Users
-    const mappedPos = UserLookup.position(idByRole[role]);
-    const rawPos    = (w.pos.text || mappedPos || "");
-    const position  = this.cleanPosition(rawPos);
-    if (!position) { showAlert("Position is required.", "error"); return; }
-
-    const action_date =
-      w.date?.formattedDate || w.date?.inputText || moment().format("YYYY-MM-DD");
-
-    await Approvals_InsertOne.run({
-      form_id: fid,
-      stage: this.stage,
-      role,
-      required_user_id:   idByRole[role]   || "",
-      required_user_name: nameByRole[role] || "",
-      name:               nameByRole[role] || "",
-      position,                    // position-only
-      action_date,
-      decision: "Approved",
-      comment: "",
-      approved_at:  moment().format("YYYY-MM-DD HH:mm:ss"),
-      commented_at: "",
-      signed_by_user_id: appsmith.user.email,
-      created_at: moment().format("YYYY-MM-DD HH:mm:ss"),
-      updated_at: moment().format("YYYY-MM-DD HH:mm:ss")
-    });
-
-    await Approvals_GetByForm.run();
-    showAlert("Approved.", "success");
-  },
-
-  async comment(role) {
-    const fid = this.formId();
-    if (!fid) { showAlert("Load an Observation first.", "error"); return; }
-
-    const h = this.header();
-
-    const nameByRole = {
-      reviewer: h.reviewer_name,
-      approver: h.approver_name,
-      assigned_to: h.assigned_to_name,
-      attention_to: h.attention_to_name
-    };
-    const idByRole = {
-      reviewer: h.reviewer_user_id,
-      approver: h.approver_user_id,
-      assigned_to: h.assigned_to_user_id,
-      attention_to: h.attention_to_user_id
-    };
-
-    const w = this._widgets(role);
-    if (!w) { showAlert(`Unknown role: ${role}`, "error"); return; }
-
-    const comment = (w.cmt.text || "").trim();
-    if (!comment) { showAlert("Please enter a comment.", "warning"); return; }
-
-    // Position for comment rows too (position-only)
-    const mappedPos = UserLookup.position(idByRole[role]);
-    const rawPos    = (w.pos?.text || mappedPos || "");
-    const position  = this.cleanPosition(rawPos);
-
-    await Approvals_InsertOne.run({
-      form_id: fid,
-      stage: this.stage,
-      role,
-      required_user_id:   idByRole[role]   || "",
-      required_user_name: nameByRole[role] || "",
-      name:               nameByRole[role] || "",
-      position,                    // position-only
-      action_date: "",
-      decision: "Not Approved",
-      comment,
-      approved_at:  "",
-      commented_at: moment().format("YYYY-MM-DD HH:mm:ss"),
-      signed_by_user_id: appsmith.user.email,
-      created_at: moment().format("YYYY-MM-DD HH:mm:ss"),
-      updated_at: moment().format("YYYY-MM-DD HH:mm:ss")
-    });
-
-    await Approvals_GetByForm.run();
-    showAlert("Comment submitted.", "success");
+    const fid=this.getFormId();
+    if(!fid) return;
+    await Approvals_GetByForm.run({ form_id: fid });
+    await PlanReply_GetByForm.run();
+    await this.syncHeaderStatus();
   }
 };

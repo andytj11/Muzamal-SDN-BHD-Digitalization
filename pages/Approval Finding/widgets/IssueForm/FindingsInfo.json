@@ -43,7 +43,7 @@
   "responsiveBehavior": "fill",
   "rightColumn": 63,
   "shouldTruncate": false,
-  "text": "{{ ReviewActions.header().findings_summary || \"-\" }}",
+  "text": "{{ ReviewActions.header().findings_summary }}",
   "textAlign": "LEFT",
   "textColor": "#18181b",
   "topRow": 28,

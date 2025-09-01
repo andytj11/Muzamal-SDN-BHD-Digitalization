@@ -1,11 +1,11 @@
 export default {
   stage: "blue",
 
-  // ---------- Header ----------
+  /* ---------- Header ---------- */
   header() { return ObservationForms_ByNo.data?.[0] || {}; },
   getFormId() { return this.header().form_id || ObservationForms_ByNo.data?.[0]?.form_id || ""; },
 
-  // ---------- Users lookup ----------
+  /* ---------- Users lookup ---------- */
   _userIx: null,
   _norm(s) { return String(s ?? "").replace(/\s+/g, " ").trim().toLowerCase(); },
 
@@ -17,10 +17,9 @@ export default {
       const idKey = this._norm(idVal);
       if (idKey) ix["id:"+idKey] = u;
 
-      const nameKey = this._norm(u.name);
-      if (nameKey) ix["name:"+nameKey] = u;
-
+      const nameKey  = this._norm(u.name);
       const emailKey = this._norm(u.email);
+      if (nameKey)  ix["name:"+nameKey]  = u;
       if (emailKey) ix["email:"+emailKey] = u;
     });
     this._userIx = ix;
@@ -38,7 +37,7 @@ export default {
     if (userId) {
       const digits = String(userId).match(/\d+/g);
       if (digits) {
-        const compact = String(parseInt(digits.join(""), 10)); // "05" -> "5"
+        const compact = String(parseInt(digits.join(""), 10));
         if (ix["id:"+compact]) return ix["id:"+compact];
       }
     }
@@ -64,7 +63,31 @@ export default {
     return this._positionFromUser(u);
   },
 
-  // ---------- Approvals ----------
+  /* ---------- Authentication (plain text via Auth_GetByUser) ---------- */
+  _enteredPassword() {
+    return (typeof AttentionPassword !== "undefined" ? (AttentionPassword.text || "") : "").trim();
+  },
+
+  async _requireAuthForAttention() {
+    const h   = this.header();
+    const uid = h.attention_to_user_id || "";
+    const pw  = this._enteredPassword();
+
+    if (!pw) { showAlert("Please enter your password.", "warning"); return false; }
+
+    // Query your auth sheet for this user id
+    try { await Auth_GetByUser.run({ user_id: uid }); } catch(_) {}
+    const row = (Auth_GetByUser.data && Auth_GetByUser.data[0]) || {};
+    const ok  = pw === (row.password_plain || "");
+
+    if (!ok) { showAlert("Authentication failed. Please check your password.", "error"); return false; }
+
+    // Clear password field after successful check
+    try { if (AttentionPassword?.widgetName) resetWidget(AttentionPassword.widgetName, true); } catch(_) {}
+    return true;
+  },
+
+  /* ---------- Approvals & helpers ---------- */
   allSignoffs() { return Approvals_GetByForm.data || []; },
   latest(stage, role) {
     const rows = this.allSignoffs().filter(r => (r.stage || "") === stage && (r.role || "") === role);
@@ -72,7 +95,6 @@ export default {
     return _.maxBy(rows, r => moment(r.approved_at || r.commented_at || r.created_at).valueOf()) || {};
   },
 
-  // Acknowledgement (red)
   ackStatus(role) {
     const d = (this.latest("red", role).decision || "").toLowerCase();
     if (d === "approved") return "Approved";
@@ -80,11 +102,10 @@ export default {
     return "Pending";
   },
 
-  // Blue stage (superior/attention_to)
   latestBlueAttention() { return this.latest("blue", "attention_to"); },
   isAttentionApproved() { return (this.latestBlueAttention().decision || "").toLowerCase() === "approved"; },
 
-  // ---------- Date helper ----------
+  /* ---------- Date helper ---------- */
   _dateFromPicker(p) {
     try {
       if (p?.formattedDate) return String(p.formattedDate).slice(0, 10);
@@ -93,23 +114,21 @@ export default {
     return "";
   },
 
-  // ---------- Load ----------
+  /* ---------- Load ---------- */
   async load() {
-    // Ensure users are loaded before we build the index
     await Users_GetAll.run();
-
     await ObservationForms_ByNo.run();
+
     const fid = this.getFormId();
     if (!fid) { showAlert("Observation number not found.", "warning"); return; }
 
-    // (Re)build index AFTER Users_GetAll has data
     this._buildUserIndex();
 
     await Approvals_GetByForm.run({ form_id: fid }); // red+blue
     await PlanReply_GetByForm.run();                 // OFI plans
   },
 
-  // ---------- Submit OFI plan (Assignee) -> planreply ----------
+  /* ---------- Submit OFI plan (Assignee) -> planreply ---------- */
   async submitOFI() {
     const fid = this.getFormId();
     if (!fid) { showAlert("Load an Observation first.", "error"); return; }
@@ -137,11 +156,16 @@ export default {
     showAlert("OFI plan submitted.", "success");
   },
 
-  // ---------- Attention To APPROVE (blue) -> formsignedoff ----------
+  /* ---------- BLUE: Approve (requires password) ---------- */
   async approveAttention() {
     const fid = this.getFormId();
     if (!fid) { showAlert("Load an Observation first.", "error"); return; }
 
+    // 1) Password check
+    const authed = await this._requireAuthForAttention();
+    if (!authed) return;
+
+    // 2) Insert approval
     const h = this.header();
     const attId   = h.attention_to_user_id || "";
     const attName = h.attention_to_name    || "";
@@ -171,18 +195,23 @@ export default {
     showAlert("OFI approved by Superior (Attention To).", "success");
   },
 
-  // ---------- Attention To COMMENT (blue) -> formsignedoff ----------
+  /* ---------- BLUE: Comment (requires password) ---------- */
   async commentAttention() {
     const fid = this.getFormId();
     if (!fid) { showAlert("Load an Observation first.", "error"); return; }
 
+    // 1) Password check
+    const authed = await this._requireAuthForAttention();
+    if (!authed) return;
+
+    // 2) Validate comment & insert
+    const comment = (AttentionComment.text || "").trim();
+    if (!comment) { showAlert("Please enter a comment.", "warning"); return; }
+
     const h = this.header();
     const attId   = h.attention_to_user_id || "";
     const attName = h.attention_to_name    || "";
-
-    const pos = this.attentionPosition(); // optional for comment
-    const comment = (AttentionComment.text || "").trim();
-    if (!comment) { showAlert("Please enter a comment.", "warning"); return; }
+    const pos     = this.attentionPosition(); // optional for comment
 
     await Approvals_InsertOne.run({
       form_id: fid,
@@ -203,6 +232,13 @@ export default {
     });
 
     await Approvals_GetByForm.run({ form_id: fid });
-    showAlert("Comment submitted.", "success");
+
+    // reset inputs
+    try {
+      if (AttentionComment?.widgetName)   resetWidget(AttentionComment.widgetName, true);
+      if (AttentionPassword?.widgetName)  resetWidget(AttentionPassword.widgetName, true);
+    } catch(_) {}
+
+    showAlert("Superior comment submitted.", "success");
   }
 };
