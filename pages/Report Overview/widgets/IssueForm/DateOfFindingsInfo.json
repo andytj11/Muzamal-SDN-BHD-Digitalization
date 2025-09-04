@@ -41,7 +41,7 @@
   "responsiveBehavior": "fill",
   "rightColumn": 45,
   "shouldTruncate": false,
-  "text": "{{ Fmt.sheet(ReviewActions.header().date_of_findings) }}",
+  "text": "{{ Fmt.sheet(ReviewActionss.header().date_of_findings) }}",
   "textAlign": "LEFT",
   "textColor": "#18181b",
   "topRow": 8,

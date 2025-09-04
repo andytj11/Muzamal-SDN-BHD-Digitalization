@@ -1,5 +1,5 @@
 {
-  "gitSyncId": "689d89d0c8cfcc46e1c3653b_df9949b5-7fc8-477b-992f-ce6caa52d124",
+  "gitSyncId": "689d89d0c8cfcc46e1c3653b_44f50547-d063-4315-99cf-df373797a7fd",
   "id": "Verify OFI Evidence_ObservationForms_FindRowIndex",
   "pluginId": "google-sheets-plugin",
   "pluginType": "SAAS",
@@ -54,7 +54,7 @@
               {
                 "condition": "EQ",
                 "key": "form_id",
-                "value": "{{ this.params?.form_id || VerifyOFI.getFormId() }}"
+                "value": "{{ this.params?.form_id || VerifyOFI_Yellow.getFormId() }}"
               }
             ],
             "condition": "AND"

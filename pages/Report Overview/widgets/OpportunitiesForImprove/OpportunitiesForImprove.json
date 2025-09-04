@@ -4,7 +4,7 @@
   "borderColor": "#E0DEDE",
   "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
   "borderWidth": "1",
-  "bottomRow": 165,
+  "bottomRow": 205,
   "boxShadow": "0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)",
   "children": [
     {
@@ -70,8 +70,8 @@
   "mobileRightColumn": 40,
   "mobileTopRow": 89,
   "needsErrorInfo": false,
-  "originalBottomRow": 167,
-  "originalTopRow": 152,
+  "originalBottomRow": 205,
+  "originalTopRow": 190,
   "parentColumnSpace": 17.9375,
   "parentId": "0",
   "parentRowSpace": 10,
@@ -80,7 +80,7 @@
   "responsiveBehavior": "fill",
   "rightColumn": 46,
   "shouldScrollContents": true,
-  "topRow": 150,
+  "topRow": 190,
   "type": "STATBOX_WIDGET",
   "widgetId": "pbbz760av4",
   "widgetName": "OpportunitiesForImprove"

@@ -37,7 +37,7 @@
   "originalTopRow": 1,
   "overflow": "NONE",
   "parentColumnSpace": 7.53515625,
-  "parentId": "dylwhczbv5",
+  "parentId": "oryuerqzlj",
   "parentRowSpace": 10,
   "renderMode": "CANVAS",
   "responsiveBehavior": "fill",
@@ -50,6 +50,6 @@
   "truncateButtonColor": "{{appsmith.theme.colors.primaryColor}}",
   "type": "TEXT_WIDGET",
   "version": 1,
-  "widgetId": "af7x7kaq3r",
+  "widgetId": "7o8y0pen4m",
   "widgetName": "OFI"
 }

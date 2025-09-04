@@ -1,7 +1,7 @@
 {
   "animateLoading": true,
   "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
-  "bottomRow": 16,
+  "bottomRow": 24,
   "dynamicBindingPathList": [
     {
       "key": "truncateButtonColor"
@@ -20,7 +20,7 @@
   "dynamicTriggerPathList": [],
   "fontFamily": "{{appsmith.theme.fontFamily.appFont}}",
   "fontSize": "0.875rem",
-  "fontStyle": "",
+  "fontStyle": "BOLD",
   "isLoading": false,
   "isVisible": true,
   "key": "8hj3cm8s5h",
@@ -39,10 +39,10 @@
   "responsiveBehavior": "fill",
   "rightColumn": 32,
   "shouldTruncate": false,
-  "text": "Date\t\t:\t{{ OverviewData.issuedBlock().date }}",
+  "text": "{{ OverviewData.issuedBlock().date }}",
   "textAlign": "LEFT",
   "textColor": "#18181b",
-  "topRow": 12,
+  "topRow": 20,
   "truncateButtonColor": "{{appsmith.theme.colors.primaryColor}}",
   "type": "TEXT_WIDGET",
   "version": 1,

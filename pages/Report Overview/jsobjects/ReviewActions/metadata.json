@@ -1,20 +1,11 @@
 {
-  "gitSyncId": "689d89d0c8cfcc46e1c3653b_4bcba70f-ff47-42b8-ad5e-f85d35c2b9ec",
+  "gitSyncId": "689d89d0c8cfcc46e1c3653b_38f29e7d-d043-40db-a88d-25c13dfcd662",
   "id": "Report Overview_ReviewActions",
   "unpublishedCollection": {
     "name": "ReviewActions",
     "pageId": "Report Overview",
     "pluginId": "js-plugin",
     "pluginType": "JS",
-    "variables": [
-      {
-        "name": "stage",
-        "value": "\"red\""
-      },
-      {
-        "name": "roles",
-        "value": "[\"reviewer\", \"approver\", \"assigned_to\", \"attention_to\"]"
-      }
-    ]
+    "variables": []
   }
 }

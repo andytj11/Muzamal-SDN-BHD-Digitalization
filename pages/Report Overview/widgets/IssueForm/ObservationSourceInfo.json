@@ -41,7 +41,7 @@
   "responsiveBehavior": "fill",
   "rightColumn": 45,
   "shouldTruncate": false,
-  "text": "{{ ReviewActions.header().observation_source  }}",
+  "text": "{{ ReviewActionss.header().observation_source  }}",
   "textAlign": "LEFT",
   "textColor": "#18181b",
   "topRow": 20,

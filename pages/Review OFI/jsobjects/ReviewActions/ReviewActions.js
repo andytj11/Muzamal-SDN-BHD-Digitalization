@@ -15,6 +15,13 @@ export default {
     return this.header().form_id || "";
   },
 	
+	getFormId() {
+    // primary: from header(); fallback: from URL query param
+    const fid = String(
+      this.header().form_id || appsmith.URL.queryParams.form_id || ""
+    ).trim();
+    return fid;
+  },
   /* =========================
    *  UTILITIES
    * ========================= */

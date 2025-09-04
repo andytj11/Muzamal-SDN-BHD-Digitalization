@@ -1,0 +1,20 @@
+{
+  "gitSyncId": "689d89d0c8cfcc46e1c3653b_4bcba70f-ff47-42b8-ad5e-f85d35c2b9ec",
+  "id": "Report Overview_ReviewActionss",
+  "unpublishedCollection": {
+    "name": "ReviewActionss",
+    "pageId": "Report Overview",
+    "pluginId": "js-plugin",
+    "pluginType": "JS",
+    "variables": [
+      {
+        "name": "stage",
+        "value": "\"red\""
+      },
+      {
+        "name": "roles",
+        "value": "[\"reviewer\", \"approver\", \"assigned_to\", \"attention_to\"]"
+      }
+    ]
+  }
+}

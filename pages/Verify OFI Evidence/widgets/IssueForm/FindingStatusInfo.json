@@ -39,7 +39,7 @@
   "parentId": "04mqpjhw89",
   "renderMode": "CANVAS",
   "responsiveBehavior": "fill",
-  "rightColumn": 60,
+  "rightColumn": 61,
   "shouldTruncate": false,
   "text": "{{ ReviewActions.computedStatus() }}",
   "textAlign": "LEFT",

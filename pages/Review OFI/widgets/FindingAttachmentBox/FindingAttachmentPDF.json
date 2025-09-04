@@ -1,7 +1,7 @@
 {
   "animateLoading": true,
   "bottomRow": 64,
-  "docUrl": "https://ontheline.trincoll.edu/images/bookdown/sample-local-pdf.pdf",
+  "docUrl": "http://localhost:8182/api/raw/ofi/F7012/test.pdf",
   "dynamicBindingPathList": [],
   "dynamicTriggerPathList": [],
   "flexVerticalAlignment": "start",

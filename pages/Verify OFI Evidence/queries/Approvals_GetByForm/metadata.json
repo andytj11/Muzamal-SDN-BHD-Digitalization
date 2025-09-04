@@ -1,5 +1,5 @@
 {
-  "gitSyncId": "689d89d0c8cfcc46e1c3653b_a878febf-66d8-47fb-9651-c00b5cc871c5",
+  "gitSyncId": "689d89d0c8cfcc46e1c3653b_cfb4c936-5575-47cc-910e-053c70ec1e5f",
   "id": "Verify OFI Evidence_Approvals_GetByForm",
   "pluginId": "google-sheets-plugin",
   "pluginType": "SAAS",
@@ -15,7 +15,7 @@
         },
         "pagination": {
           "data": {
-            "limit": "50",
+            "limit": "1000000",
             "offset": "0"
           }
         },
@@ -40,8 +40,16 @@
         "sortBy": {
           "data": [
             {
-              "column": "stage",
-              "order": "Ascending"
+              "column": "created_at",
+              "order": "Descending"
+            },
+            {
+              "column": "approved_at",
+              "order": "Descending"
+            },
+            {
+              "column": "commented_at",
+              "order": "Descending"
             }
           ]
         },

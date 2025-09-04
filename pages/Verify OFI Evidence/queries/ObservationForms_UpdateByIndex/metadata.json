@@ -1,5 +1,5 @@
 {
-  "gitSyncId": "689d89d0c8cfcc46e1c3653b_49f9ad11-ad93-492d-8c30-9949040c0862",
+  "gitSyncId": "689d89d0c8cfcc46e1c3653b_4e7f20e9-f018-4ed2-80f7-a8142bbddd3b",
   "id": "Verify OFI Evidence_ObservationForms_UpdateByIndex",
   "pluginId": "google-sheets-plugin",
   "pluginType": "SAAS",
@@ -29,7 +29,7 @@
           "data": ""
         },
         "rowObjects": {
-          "data": "{{\n  [{\n    rowIndex: this.params.rowIndex,  // required pointer to the row\n    status:   this.params.status     // cells to update\n  }]\n}}"
+          "data": "{{\n  [{\n    rowIndex: this.params.rowIndex,   // required pointer to the row\n    status:   this.params.status      // only cells you want to update\n  }]\n}}\n"
         },
         "sheetName": {
           "data": "observationforms"

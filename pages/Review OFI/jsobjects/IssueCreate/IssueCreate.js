@@ -13,7 +13,7 @@ export default {
     await storeValue('due_cal', cal);
     await storeValue('due_work', work);
 
-    if (EvidenceUpload.files?.length) {
+    if (FilePickerEvidence.files?.length) {
 			await Evidence_Upload.run();
 			if (!Evidence_Upload.data?.ok) {
 				showAlert("Upload failed: " + (Evidence_Upload.data?.message || "Unknown"), "error");
@@ -24,7 +24,7 @@ export default {
 
     await ObservationForms_Insert.run();
     await FormFindings_Insert.run();
-    if (EvidenceUpload.files?.length) await Evidence_Insert.run();
+    if (FilePickerEvidence.files?.length) await Evidence_Insert.run();
 
     showAlert(`Issue ${formId} created. Plan reply due (working): ${work}`, "success");
   }

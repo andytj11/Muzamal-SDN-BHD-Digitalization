@@ -37,15 +37,11 @@
       "isDefault": false
     },
     {
-      "id": "Verify OFI Evidence",
-      "isDefault": false
-    },
-    {
       "id": "Report Overview",
       "isDefault": false
     },
     {
-      "id": "Verify OFI Plan Copy",
+      "id": "Verify OFI Evidence",
       "isDefault": false
     }
   ],

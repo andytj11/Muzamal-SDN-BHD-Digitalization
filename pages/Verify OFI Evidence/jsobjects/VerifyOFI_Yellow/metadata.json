@@ -1,0 +1,20 @@
+{
+  "gitSyncId": "689d89d0c8cfcc46e1c3653b_2916ae77-b114-41ea-b86a-8626549ff185",
+  "id": "Verify OFI Evidence_VerifyOFI_Yellow",
+  "unpublishedCollection": {
+    "name": "VerifyOFI_Yellow",
+    "pageId": "Verify OFI Evidence",
+    "pluginId": "js-plugin",
+    "pluginType": "JS",
+    "variables": [
+      {
+        "name": "_planRows",
+        "value": "[]"
+      },
+      {
+        "name": "_userIx",
+        "value": "null"
+      }
+    ]
+  }
+}

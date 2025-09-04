@@ -38,7 +38,7 @@
       "mobileTopRow": 0,
       "needsErrorInfo": false,
       "parentColumnSpace": 1,
-      "parentId": "06xuo2z9cr",
+      "parentId": "uwm29fkax3",
       "parentRowSpace": 1,
       "renderMode": "CANVAS",
       "responsiveBehavior": "fill",
@@ -46,7 +46,7 @@
       "topRow": 0,
       "type": "CANVAS_WIDGET",
       "version": 1,
-      "widgetId": "dylwhczbv5",
+      "widgetId": "oryuerqzlj",
       "widgetName": "Canvas5"
     }
   ],
@@ -82,6 +82,6 @@
   "shouldScrollContents": true,
   "topRow": 71,
   "type": "STATBOX_WIDGET",
-  "widgetId": "06xuo2z9cr",
+  "widgetId": "uwm29fkax3",
   "widgetName": "OpportunitiesForImprove"
 }
