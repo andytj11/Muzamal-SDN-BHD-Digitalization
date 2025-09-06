@@ -1,7 +1,7 @@
 {
   "animateLoading": true,
-  "bottomRow": 64,
-  "docUrl": "https://ontheline.trincoll.edu/images/bookdown/sample-local-pdf.pdf",
+  "bottomRow": 63,
+  "docUrl": "https://pdfobject.com/pdf/sample.pdf",
   "dynamicBindingPathList": [],
   "dynamicTriggerPathList": [],
   "flexVerticalAlignment": "start",
@@ -23,7 +23,7 @@
   "renderMode": "CANVAS",
   "responsiveBehavior": "fill",
   "rightColumn": 63,
-  "topRow": 6,
+  "topRow": 5,
   "type": "DOCUMENT_VIEWER_WIDGET",
   "version": 1,
   "widgetId": "5136l5wkx5",
