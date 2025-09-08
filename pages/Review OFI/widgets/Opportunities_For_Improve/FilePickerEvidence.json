@@ -44,7 +44,7 @@
   "mobileRightColumn": 15,
   "mobileTopRow": 23,
   "needsErrorInfo": false,
-  "onFilesSelected": "{{ EvidenceActions.onFilesSelected() }}\n",
+  "onFilesSelected": "{{//  NextcloudActions.uploadToNextcloud() \nNCUpload.upload() }}",
   "originalBottomRow": 16,
   "originalTopRow": 12,
   "parentColumnSpace": 17.9375,

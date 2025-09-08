@@ -1,4 +1,13 @@
 export default {
+	
+	currentObservationNo() {
+    return (
+      appsmith.store.form_payload?.observation_no ||
+      appsmith.store.draft_observation_no ||
+      "—"
+    );
+  },
+	
   // Normalize to date-only
   toDateOnly(input) {
     if (!input) {

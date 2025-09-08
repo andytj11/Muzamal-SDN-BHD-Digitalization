@@ -1,0 +1,16 @@
+{
+  "gitSyncId": "689d89d0c8cfcc46e1c3653b_645503c5-4e34-4005-b371-21da16b61f49",
+  "id": "Review OFI_NCViewer",
+  "unpublishedCollection": {
+    "name": "NCViewer",
+    "pageId": "Review OFI",
+    "pluginId": "js-plugin",
+    "pluginType": "JS",
+    "variables": [
+      {
+        "name": "cfg",
+        "value": "{\n  base: \"http://localhost:8185\",\n  user: \"admin\",\n  pass: \"admin\"\n}"
+      }
+    ]
+  }
+}

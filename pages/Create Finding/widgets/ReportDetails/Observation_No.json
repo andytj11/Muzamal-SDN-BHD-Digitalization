@@ -46,7 +46,7 @@
   "responsiveBehavior": "fill",
   "rightColumn": 60,
   "shouldTruncate": false,
-  "text": "Observation No\t\t\t:\t{{ Utils.genObservationNo() }}",
+  "text": "Observation No \t\t: \t{{ Utils.currentObservationNo() }}\n",
   "textAlign": "LEFT",
   "textColor": "{{appsmith.theme.colors.primaryColor}}",
   "topRow": 0,

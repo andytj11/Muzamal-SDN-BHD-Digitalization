@@ -1,171 +1,143 @@
 export default {
-  /* ----------------------- CONFIG / SEEDS ----------------------- */
-  // Form IDs will be F7004, F7005, ...
-  BASE_FORM_START: 7004,
+  pad2(n){ return String(n).padStart(2, '0'); },
 
-  // Observation code starts by year.
-  // For 2025 we start at 08 => OBS-2025-08 then -09, -10, ...
-  // (Other years default to 01 unless you add them here.)
-  BASE_CODE_START_BY_YEAR: { "2025": 8 },
-
-  // Working due date rule: +N calendar days then roll to next business day
-  CAL_DAYS: 30,
-
-  /* ----------------------- INTERNAL HELPERS ----------------------- */
-  _dateOfFindings() {
-    // fallback to today if widget empty
-    return (typeof moment !== "undefined")
-      ? (DateOfFindings?.selectedDate ? moment(DateOfFindings.selectedDate) : moment())
-      : new Date();
+  // ----- FORM ID (F####), strictly +1 from current max -----
+  nextFormId(forms){
+    const nums = (forms || [])
+      .map(r => String(r.form_id || ""))
+      .map(s => {
+        const m = s.match(/\d+/);
+        return m ? parseInt(m[0], 10) : NaN;
+      })
+      .filter(Number.isFinite);
+    const max = nums.length ? Math.max(...nums) : 7003; // first becomes F7004
+    return `F${max + 1}`;
+  },
+  // Guard against duplicate in memory (in case of stale cache)
+  ensureUniqueFormId(forms, candidate){
+    const have = new Set((forms || []).map(r => String(r.form_id || "").trim()));
+    if (!have.has(candidate)) return candidate;
+    let n = parseInt(candidate.replace(/[^\d]/g,''), 10);
+    let id = candidate;
+    while (have.has(id)) { n += 1; id = `F${n}`; }
+    return id;
   },
 
-  async _getForms() {
-    try { await ObservationForms_GetAll.run(); } catch (e) {}
-    return Array.isArray(ObservationForms_GetAll?.data) ? ObservationForms_GetAll.data : [];
-  },
-
-  /* ----------------------- ID GENERATORS ----------------------- */
-  nextFormId(rows) {
-    const nums = (rows || [])
-      .map(r => String(r.form_id || "").match(/F(\d+)/i))
-      .filter(Boolean)
-      .map(m => parseInt(m[1], 10))
-      .filter(n => !isNaN(n));
-
-    const seed = this.BASE_FORM_START - 1;
-    const max = nums.length ? Math.max(...nums) : seed;
-    const next = Math.max(max + 1, this.BASE_FORM_START);
-    return `F${next}`;
-  },
-
-  nextObsCode(rows) {
-    const year = this._dateOfFindings().format?.("YYYY") || new Date().getFullYear().toString();
+  // ----- OBSERVATION CODE: OBS-YYYY-NN (per year, incremental) -----
+  nextObservationCode(forms){
+    const year = moment().format('YYYY');
     const prefix = `OBS-${year}-`;
-
-    const suffixes = (rows || [])
+    const suffixes = (forms || [])
       .map(r => String(r.observation_code_pdf || ""))
-      .filter(code => code.startsWith(prefix))
-      .map(code => parseInt(code.slice(prefix.length), 10))
+      .filter(x => x.startsWith(prefix))
+      .map(x => parseInt(x.split('-').pop(), 10))
       .filter(n => !isNaN(n));
-
-    const baseStart = this.BASE_CODE_START_BY_YEAR[year] || 1; // default 01 for other years
-    const seed = baseStart - 1;
-    const max = suffixes.length ? Math.max(...suffixes) : seed;
-    const next = Math.max(max + 1, baseStart);
-
-    return `${prefix}${String(next).padStart(2, "0")}`;
+    const next = (suffixes.length ? Math.max(...suffixes) : 7) + 1; // …-08 if none
+    return `${prefix}${this.pad2(next)}`;
   },
 
-  ensureUnique(rows, formId, obsCode) {
-    let f = formId;
-    let c = obsCode;
-
-    const hasForm = id =>
-      (rows || []).some(r => String(r.form_id).toUpperCase() === String(id).toUpperCase());
-    const hasCode = code =>
-      (rows || []).some(r => String(r.observation_code_pdf) === String(code));
-
-    // bump until not colliding
-    while (hasForm(f)) {
-      const n = parseInt(String(f).replace(/^\D+/, ""), 10) + 1;
-      f = `F${n}`;
+  // ----- OBSERVATION NO: 3 digits + 1 letter, unique within sheet -----
+  newObservationNo(forms){
+    const existing = new Set((forms || []).map(r => String(r.observation_no || "").trim()));
+    const ABC = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    for (let i = 0; i < 2000; i++){
+      const num = Math.floor(100 + Math.random()*900);
+      const letter = ABC[Math.floor(Math.random()*26)];
+      const code = `${num}${letter}`;
+      if (!existing.has(code)) return code;
     }
-
-    while (hasCode(c)) {
-      const m = String(c).match(/^OBS-(\d{4})-(\d+)$/);
-      const y = m ? m[1] : (this._dateOfFindings().format?.("YYYY") || new Date().getFullYear().toString());
-      const s = (m ? parseInt(m[2], 10) : 0) + 1;
-      c = `OBS-${y}-${String(s).padStart(2, "0")}`;
-    }
-
-    return { formId: f, obsCode: c };
+    // ultra-rare fallback
+    return `${moment().format("Hmm")}${ABC[Math.floor(Math.random()*26)]}`;
   },
-	
-	// ---- Working-day adder (fallback if Utils isn't available) ----
-  addWorkingDaysLocal(startDate, days, holidaysRows) {
-    const m0 = (typeof moment !== "undefined")
-      ? moment(startDate)
-      : new Date(startDate);
 
-    const toYMD = mm => (typeof moment !== "undefined"
-      ? mm.format("YYYY-MM-DD")
-      : new Date(mm).toISOString().slice(0,10));
+  // ----- Pick user from Select widget -----
+  selectedUserFrom(widget){
+    const id   = widget?.selectedOptionValue || "";
+    const name = widget?.selectedOptionLabel || "";
+    if (id && name) return { id, name };
+    const u = (Users_GetAll?.data || []).find(x => String(x.user_id) === String(id));
+    return { id, name: name || u?.name || "" };
+  },
 
-    const holidaySet = new Set(
-      (holidaysRows || []).map(h =>
-        (h.holiday_date && typeof moment !== "undefined")
-          ? moment(h.holiday_date).format("YYYY-MM-DD")
-          : h.holiday_date
-      )
+  // ----- Sources → CSV -----
+  sourcesCsv(){
+    const opts = SourceSelect?.selectedOptions || [];
+    if (Array.isArray(opts) && opts.length) return opts.map(o => o.label ?? o).join(', ');
+    const labs = SourceSelect?.selectedOptionLabels;
+    if (Array.isArray(labs) && labs.length) return labs.join(', ');
+    const val = SourceSelect?.selectedOptionValue;
+    if (Array.isArray(val)) return val.join(', ');
+    return "";
+  },
+
+  // ----- Build the exact row we will insert (single source of truth) -----
+  buildInsertRow(){
+    const forms = ObservationForms_GetAll.data || [];
+
+    // IDs (use store if already reserved)
+    const reserved = appsmith.store.new_form_id;
+    const formId = this.ensureUniqueFormId(forms,
+      reserved || this.nextFormId(forms)
     );
+    const obsNo   = appsmith.store.new_obs_no   || this.newObservationNo(forms);
+    const obsCode = appsmith.store.new_obs_code || this.nextObservationCode(forms);
 
-    // include the start day in the count, like your Utils.addWorkingDays
-    let m = (typeof moment !== "undefined") ? m0.clone() : new Date(m0);
-    let count = 0;
-    while (count < days) {
-      const d = (typeof moment !== "undefined") ? m.day() : m.getDay();
-      const ymd = toYMD(m);
-      const isWeekend = d === 0 || d === 6;
-      const isHoliday = holidaySet.has(ymd);
-      if (!isWeekend && !isHoliday) count++;
-      if (count === days) break;
-      (typeof moment !== "undefined") ? m.add(1, "day") : m.setDate(m.getDate()+1);
-    }
-    return toYMD(m);
-  },
+    // Dates
+    const submitted = moment().format('YYYY-MM-DD');
+    const findings  = submitted;
+    const due = Utils.addWorkingDays(submitted, 7, Holidays_GetAll.data);
+    const dueFmt = moment(due).format('YYYY-MM-DD');
 
-  /**
-   * Compute plan-reply due dates from SUBMISSION date:
-   * - Calendar due: +7 calendar days
-   * - Working due:  +7 working days (weekends/holidays skipped)
-   *
-   * @param {string} submitYMD - e.g. "2025-08-19" (optional; defaults to today)
-   */
-  computeDueDates(submitYMD) {
-    const submitted = (typeof moment !== "undefined")
-      ? moment(submitYMD || moment().format("YYYY-MM-DD"))
-      : new Date(submitYMD || new Date());
+    // Pickers
+    const deptName  = DepartmentSelect.selectedOptionLabel || DepartmentSelect.text || "";
+    const sourceCsv = this.sourcesCsv();
 
-    const cal = (typeof moment !== "undefined")
-      ? submitted.clone().add(7, "days").format("YYYY-MM-DD")
-      : new Date(submitted.getTime() + 7*24*3600*1000).toISOString().slice(0,10);
+    const issued    = this.selectedUserFrom(IssuedBySelect);
+    const reviewer  = this.selectedUserFrom(ReviewedBySelect);
+    const approver  = this.selectedUserFrom(ApprovedBySelect);
+    const assigned  = this.selectedUserFrom(AssignedToSelect);
+    const attention = this.selectedUserFrom(AttentionToSelect);
 
-    // Prefer your Utils.addWorkingDays if present
-    const work = (typeof Utils !== "undefined" && typeof Utils.addWorkingDays === "function")
-      ? Utils.addWorkingDays(
-          (typeof moment !== "undefined" ? submitted.format("YYYY-MM-DD") : submitted.toISOString().slice(0,10)),
-          7,
-          Holidays_GetAll.data
-        )
-      : this.addWorkingDaysLocal(
-          (typeof moment !== "undefined" ? submitted.format("YYYY-MM-DD") : submitted.toISOString().slice(0,10)),
-          7,
-          Holidays_GetAll.data
-        );
-
-    return { cal, work };
-  },
-
-  async reserveIds() {
-    const rows = await this._getForms();
-    let formId = this.nextFormId(rows);
-    let obsCode = this.nextObsCode(rows);
-    ({ formId, obsCode } = this.ensureUnique(rows, formId, obsCode));
-    return { formId, obsCode };
-  },
-
-  genObsNo() {
-    const n = Math.floor(100 + Math.random() * 900); // 3 digits
-    const letter = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".charAt(Math.floor(Math.random() * 26));
-    return `${n}${letter}`; // e.g., 861X
-  },
-
-  /* ----------------------- OPTIONAL: PREVIEW ----------------------- */
-  async previewNext() {
-    const rows = await this._getForms();
     return {
-      nextForm: this.nextFormId(rows),
-      nextCode: this.nextObsCode(rows),
+      // --- IDs ---
+      form_id: formId,
+      observation_no: obsNo,                 // << write the *real* obs no here
+      observation_code_pdf: obsCode,         // OBS-YYYY-NN
+
+      // --- static doc info ---
+      document_no: "MUZ-FM-AUD-002",
+      revision: 6,
+      effective_date: "2024-11-26",
+
+      // --- dates ---
+      date_of_findings: findings,            // == date_submitted
+      date_submitted: submitted,
+      plan_reply_due_date: dueFmt,
+
+      // --- meta / pickers ---
+      department_name: deptName,
+      observation_source: sourceCsv,
+
+      issued_by_user_id: issued.id,
+      issued_by_name: issued.name,
+
+      reviewer_user_id: reviewer.id,
+      reviewer_name: reviewer.name,
+
+      approver_user_id: approver.id,
+      approver_name: approver.name,
+
+      assigned_to_user_id: assigned.id,
+      assigned_to_name: assigned.name,
+
+      attention_to_user_id: attention.id,
+      attention_to_name: attention.name,
+
+      // --- status & remarks ---
+      status: "OPEN",
+      ofi_plan_received_date: "",
+      ofi_evidence_received_date: "",
+      findings_summary: (FindingsInput.text || "").trim()
     };
   }
 };

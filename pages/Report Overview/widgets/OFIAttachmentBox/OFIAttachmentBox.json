@@ -4,12 +4,12 @@
   "borderColor": "#E0DEDE",
   "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
   "borderWidth": "1",
-  "bottomRow": 525,
+  "bottomRow": 469,
   "boxShadow": "0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)",
   "children": [
     {
       "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
-      "bottomRow": 670,
+      "bottomRow": 110,
       "boxShadow": "{{appsmith.theme.boxShadow.appBoxShadow}}",
       "canExtend": false,
       "containerStyle": "none",
@@ -38,7 +38,7 @@
       "mobileTopRow": 0,
       "needsErrorInfo": false,
       "parentColumnSpace": 1,
-      "parentId": "5fvobrkbkx",
+      "parentId": "bpecqiv3e7",
       "parentRowSpace": 1,
       "renderMode": "CANVAS",
       "responsiveBehavior": "fill",
@@ -46,7 +46,7 @@
       "topRow": 0,
       "type": "CANVAS_WIDGET",
       "version": 1,
-      "widgetId": "6uc5r5mp6h",
+      "widgetId": "0cb3v0xxhg",
       "widgetName": "Canvas7Copy"
     }
   ],
@@ -55,7 +55,7 @@
       "key": "borderRadius"
     }
   ],
-  "dynamicHeight": "FIXED",
+  "dynamicHeight": "AUTO_HEIGHT",
   "dynamicTriggerPathList": [],
   "flexVerticalAlignment": "stretch",
   "isCanvas": true,
@@ -70,7 +70,7 @@
   "mobileRightColumn": 40,
   "mobileTopRow": 155,
   "needsErrorInfo": false,
-  "originalBottomRow": 525,
+  "originalBottomRow": 469,
   "originalTopRow": 458,
   "parentColumnSpace": 17.9375,
   "parentId": "0",
@@ -82,6 +82,6 @@
   "shouldScrollContents": true,
   "topRow": 458,
   "type": "STATBOX_WIDGET",
-  "widgetId": "5fvobrkbkx",
+  "widgetId": "bpecqiv3e7",
   "widgetName": "OFIAttachmentBox"
 }

@@ -1,0 +1,16 @@
+{
+  "gitSyncId": "689d89d0c8cfcc46e1c3653b_517a89ae-e914-4d73-a226-ea81ce6aa3b5",
+  "id": "Review OFI_NCUpload",
+  "unpublishedCollection": {
+    "name": "NCUpload",
+    "pageId": "Review OFI",
+    "pluginId": "js-plugin",
+    "pluginType": "JS",
+    "variables": [
+      {
+        "name": "cfg",
+        "value": "{\n  base: \"http://localhost:8185\",\n  user: \"admin\",\n  pass: \"admin\"\n}"
+      }
+    ]
+  }
+}

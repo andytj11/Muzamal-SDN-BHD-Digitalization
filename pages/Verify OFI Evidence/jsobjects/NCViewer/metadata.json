@@ -1,0 +1,16 @@
+{
+  "gitSyncId": "689d89d0c8cfcc46e1c3653b_b57bc1a0-31b4-4121-b0e7-70ba3e09e557",
+  "id": "Verify OFI Evidence_NCViewer",
+  "unpublishedCollection": {
+    "name": "NCViewer",
+    "pageId": "Verify OFI Evidence",
+    "pluginId": "js-plugin",
+    "pluginType": "JS",
+    "variables": [
+      {
+        "name": "cfg",
+        "value": "{\n  base: \"http://localhost:8185\",\n  user: \"admin\",\n  pass: \"admin\"\n}"
+      }
+    ]
+  }
+}

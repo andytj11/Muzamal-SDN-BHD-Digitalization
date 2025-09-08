@@ -1,8 +1,12 @@
 {
   "animateLoading": true,
   "bottomRow": 64,
-  "docUrl": "http://localhost:8182/api/raw/ofi/F7012/test.pdf",
-  "dynamicBindingPathList": [],
+  "docUrl": "{{ FilePickerEvidence.files[0].data }}",
+  "dynamicBindingPathList": [
+    {
+      "key": "docUrl"
+    }
+  ],
   "dynamicTriggerPathList": [],
   "flexVerticalAlignment": "start",
   "isCanvas": false,

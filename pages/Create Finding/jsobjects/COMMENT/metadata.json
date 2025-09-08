@@ -6,19 +6,6 @@
     "pageId": "Create Finding",
     "pluginId": "js-plugin",
     "pluginType": "JS",
-    "variables": [
-      {
-        "name": "BASE_FORM_START",
-        "value": "7004"
-      },
-      {
-        "name": "BASE_CODE_START_BY_YEAR",
-        "value": "{\n  \"2025\": 8\n}"
-      },
-      {
-        "name": "CAL_DAYS",
-        "value": "30"
-      }
-    ]
+    "variables": []
   }
 }
