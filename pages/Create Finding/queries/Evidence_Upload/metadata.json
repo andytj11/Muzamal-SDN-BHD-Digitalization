@@ -11,7 +11,7 @@
           "value": "text/plain"
         }
       ],
-      "body": "{{\n  JSON.stringify({\n    folderId: \"1cdeQHSiNUmP2srahUucPLqR7k6KKrmJO\",\n    filename:\n      \"evidence_\" + (appsmith.store.form_id || \"tmp\") + \"_\" +\n      (FilePickerEvidence.files?.[0]?.name || \"evidence.pdf\"),\n    mimeType: FilePickerEvidence.files?.[0]?.type || \"application/pdf\",\n    base64: (FilePickerEvidence.files?.[0]?.data || \"\").replace(/^data:.*;base64,/, \"\")\n  })\n}}\n",
+      "body": "{{\n  JSON.stringify({\n    folderId: \"1cdeQHSiNUmP2srahUucPLqR7k6KKrmJO\",\n    filename:\n      \"evidence_\" + (appsmith.store.form_id || \"tmp\") + \"_\" +\n      (FilePickerFinding.files?.[0]?.name || \"evidence.pdf\"),\n    mimeType: FilePickerFinding.files?.[0]?.type || \"application/pdf\",\n    base64: (FilePickerFinding.files?.[0]?.data || \"\").replace(/^data:.*;base64,/, \"\")\n  })\n}}\n",
       "bodyFormData": [],
       "encodeParamsToggle": true,
       "formData": {

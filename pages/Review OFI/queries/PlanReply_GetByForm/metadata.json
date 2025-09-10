@@ -78,7 +78,7 @@
     ],
     "name": "PlanReply_GetByForm",
     "pageId": "Review OFI",
-    "runBehaviour": "AUTOMATIC",
+    "runBehaviour": "MANUAL",
     "userSetOnLoad": false
   }
 }

@@ -135,10 +135,38 @@ export default {
     return _.maxBy(rows,score)||{};
   },
   ofiText(){ return this.latestPlan().ofi_text || ""; },
-  ofiTargetDate(){
-    const d=this.latestPlan().target_date;
-    return d ? moment(d).format("YYYY-MM-DD") : "";
+	
+	ofiRows() {
+    const fid = this.getFormId();
+    const rows = (PlanReply_GetByForm.data || []).filter(r => {
+      const rid = String(r.form_id || "").trim();
+      return fid && rid && rid.toLowerCase() === String(fid).toLowerCase();
+    });
+    return rows;
   },
+
+  /** Pick newest OFI row (updated_at > created_at > reply_date/target_date) */
+  ofiLatest() {
+    const rows = this.ofiRows().slice();
+    if (!rows.length) return {};
+    return _.maxBy(
+      rows,
+      r => moment(
+        r.updated_at || r.created_at || r.reply_date || r.target_date
+      ).valueOf()
+    ) || {};
+  },
+	
+  // REPLACE this method
+	ofiTargetDate() {
+		const fid = this.getFormId();
+		const fromStore = (appsmith.store?.OFI_TARGET_BY_FORM || {})[fid];
+		if (fromStore) return moment(fromStore).isValid() ? moment(fromStore).format("YYYY-MM-DD") : String(fromStore);
+		const r = this.ofiLatest();
+		const d = r.target_date || r.reply_date;
+		return d ? moment(d).format("YYYY-MM-DD") : "";
+	},
+
 
   /* -------------------- Page bootstrap & refresh chain -------------------- */
   async init(){

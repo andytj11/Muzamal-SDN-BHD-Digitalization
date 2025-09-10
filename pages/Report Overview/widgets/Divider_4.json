@@ -1,6 +1,6 @@
 {
   "animateLoading": true,
-  "bottomRow": 387,
+  "bottomRow": 404,
   "capSide": 0,
   "capType": "dot",
   "dividerColor": "#858282",
@@ -27,7 +27,7 @@
   "rightColumn": 46,
   "strokeStyle": "solid",
   "thickness": "3",
-  "topRow": 383,
+  "topRow": 400,
   "type": "DIVIDER_WIDGET",
   "version": 1,
   "widgetId": "wp2peode8a",

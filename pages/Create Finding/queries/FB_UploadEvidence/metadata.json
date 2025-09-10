@@ -16,7 +16,7 @@
         {
           "key": "files[]",
           "type": "File",
-          "value": "{{ FilePickerEvidence.files[0] }}"
+          "value": "{{ FilePickerFinding.files[0] }}"
         }
       ],
       "encodeParamsToggle": true,

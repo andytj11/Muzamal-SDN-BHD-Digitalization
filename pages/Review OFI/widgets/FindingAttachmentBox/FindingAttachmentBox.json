@@ -4,12 +4,12 @@
   "borderColor": "#E0DEDE",
   "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
   "borderWidth": "1",
-  "bottomRow": 234,
+  "bottomRow": 184,
   "boxShadow": "0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)",
   "children": [
     {
       "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
-      "bottomRow": 670,
+      "bottomRow": 160,
       "boxShadow": "{{appsmith.theme.boxShadow.appBoxShadow}}",
       "canExtend": false,
       "containerStyle": "none",
@@ -38,7 +38,7 @@
       "mobileTopRow": 0,
       "needsErrorInfo": false,
       "parentColumnSpace": 1,
-      "parentId": "l0j3qe63yw",
+      "parentId": "cc8o8cbjt1",
       "parentRowSpace": 1,
       "renderMode": "CANVAS",
       "responsiveBehavior": "fill",
@@ -46,8 +46,8 @@
       "topRow": 0,
       "type": "CANVAS_WIDGET",
       "version": 1,
-      "widgetId": "qdte1ogo12",
-      "widgetName": "Canvas7"
+      "widgetId": "bxzjku9vxb",
+      "widgetName": "Canvas7Copy"
     }
   ],
   "dynamicBindingPathList": [
@@ -70,8 +70,8 @@
   "mobileRightColumn": 40,
   "mobileTopRow": 155,
   "needsErrorInfo": false,
-  "originalBottomRow": 234,
-  "originalTopRow": 167,
+  "originalBottomRow": 184,
+  "originalTopRow": 168,
   "parentColumnSpace": 17.9375,
   "parentId": "0",
   "parentRowSpace": 10,
@@ -80,8 +80,8 @@
   "responsiveBehavior": "fill",
   "rightColumn": 46,
   "shouldScrollContents": true,
-  "topRow": 167,
+  "topRow": 168,
   "type": "STATBOX_WIDGET",
-  "widgetId": "l0j3qe63yw",
+  "widgetId": "cc8o8cbjt1",
   "widgetName": "FindingAttachmentBox"
 }

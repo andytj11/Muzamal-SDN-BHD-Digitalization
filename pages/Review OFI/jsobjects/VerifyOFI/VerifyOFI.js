@@ -161,17 +161,85 @@ export default {
     ) || {};
   },
 
+  /** Target date (falls back to reply_date if needed). Also checks store so UI updates instantly. */
+  ofiTargetDate() {
+    const fid = this.getFormId();
+    const fromStore = (appsmith.store?.OFI_TARGET_BY_FORM || {})[fid];
+    if (fromStore) return moment(fromStore).isValid() ? moment(fromStore).format("YYYY-MM-DD") : String(fromStore);
+    const r = this.ofiLatest();
+    const d = r.target_date || r.reply_date;
+    return d ? moment(d).format("YYYY-MM-DD") : "";
+  },
+
   /** Text of OFI (supports both ofi_text and older reply_text) */
   ofiText() {
     const r = this.ofiLatest();
     return (r.ofi_text || r.reply_text || "").trim();
   },
 
-  /** Target date (falls back to reply_date if needed) */
-  ofiTargetDate() {
-    const r = this.ofiLatest();
-    const d = r.target_date || r.reply_date;
-    return d ? moment(d).format("YYYY-MM-DD") : "";
+  /* ---------- New: save target date from DatePicker ------------------------ */
+  _fmtDate(v){
+    if (!v) return "";
+    try {
+      // Accept Date object, ISO string, or YYYY-MM-DD
+      let m = moment(v);
+      if (!m.isValid() && typeof v === "string") {
+        const dayOnly = v.split("T")[0];
+        m = moment(dayOnly, ["YYYY-MM-DD","DD/MM/YYYY","MM/DD/YYYY", moment.ISO_8601], true);
+        if (!m.isValid()) m = moment(v); // last resort parse
+      }
+      return m.isValid() ? m.format("YYYY-MM-DD") : "";
+    } catch(_) { return ""; }
+  },
+  _findQuery(candidates){
+    for (const name of candidates) {
+      const q = (typeof globalThis !== "undefined") ? globalThis[name] : undefined;
+      if (q && typeof q.run === "function") return q;
+    }
+    return null;
+  },
+  async saveTargetDate(rawDate){
+    const fid = this.getFormId();
+    if (!fid) { showAlert("No observation loaded.","error"); return; }
+
+    // Prefer the param; fall back to widget value if present
+    const picked = rawDate || (typeof TargetDateInput !== "undefined" ? TargetDateInput.selectedDate : "");
+    const d = this._fmtDate(picked);
+    if (!d) { showAlert("Please select a valid date.","warning"); return; }
+
+    // Persist to backend if a suitable query exists; otherwise cache in store
+    const now = moment().format("YYYY-MM-DD HH:mm:ss");
+    const q = this._findQuery([
+      "PlanReply_UpsertTargetDate",
+      "PlanReply_SaveTargetDate",
+      "PlanReply_UpsertOne",
+      "PlanReply_InsertOne",
+      "PlanReply_Save",
+      "PlanReply_Insert"
+    ]);
+
+    if (q) {
+      // Try common field names; swallow secondary failure quietly (works across Sheet/DB variants)
+      try {
+        await q.run({ form_id: fid, target_date: d, updated_at: now, created_at: now });
+      } catch(e1) {
+        try {
+          await q.run({ Form_ID: fid, Target_Date: d, Updated_At: now, Created_At: now });
+        } catch(e2) {
+          throw e1; // bubble first error if none of the shapes work
+        }
+      }
+    }
+
+    // Always cache in store for instant UI feedback and cross‑page reuse
+    const map = Object.assign({}, appsmith.store?.OFI_TARGET_BY_FORM || {});
+    map[fid] = d;
+    await storeValue("OFI_TARGET_BY_FORM", map, true);
+
+    // Refresh the source used by ofiTargetDate()
+    try { await PlanReply_GetByForm.run({ form_id: fid }); } catch(_) {}
+
+    showAlert("Target date saved.", "success");
   },
 
   /* ---------- YELLOW (EVIDENCE VERIFY) ---------- */
@@ -237,23 +305,19 @@ export default {
 
   /* -------------------- STATUS (ORDERED) -------------------- */
   computedStatus(){
-    // Highest priority: Yellow (evidence) both approved
     if (this.isYellowReviewerApproved() && this.isYellowApproverApproved()) {
       return "OFI EVIDENCE APPROVED";
     }
-    // Next: Black (plan) both approved
     if (this.isReviewerApproved() && this.isApproverApproved()) {
       return "OFI PLAN APPROVED";
     }
-    // Next: Blue attention approved
     if (this.blueAttentionApproved()) {
       return "OFI APPROVED";
     }
-    // Optionally you can keep FINDING APPROVED or OPEN below if you still use red
     return "OPEN";
   },
   statusForHeader(){
-    return this.computedStatus(); // mapped already as plain text
+    return this.computedStatus();
   },
 
   async syncHeaderStatus(){
@@ -263,7 +327,6 @@ export default {
     const current = this.header().status || "";
     if (!desired || desired === current) return;
 
-    // Find row index for this form_id, then update by rowIndex
     await ObservationForms_FindRowIndex.run({ form_id: fid });
     const idx = ObservationForms_FindRowIndex.data?.[0]?.rowIndex;
     if (idx === undefined || idx === null || Number.isNaN(Number(idx))) return;

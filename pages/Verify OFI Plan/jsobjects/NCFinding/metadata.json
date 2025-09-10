@@ -1,0 +1,16 @@
+{
+  "gitSyncId": "689d89d0c8cfcc46e1c3653b_c6b3754b-f685-4129-942a-a53d29c42e24",
+  "id": "Verify OFI Plan_NCFinding",
+  "unpublishedCollection": {
+    "name": "NCFinding",
+    "pageId": "Verify OFI Plan",
+    "pluginId": "js-plugin",
+    "pluginType": "JS",
+    "variables": [
+      {
+        "name": "cfg",
+        "value": "{\n  base: \"http://localhost:8185\",\n  user: \"admin\",\n  pass: \"admin\"\n}"
+      }
+    ]
+  }
+}

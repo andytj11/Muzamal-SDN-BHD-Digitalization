@@ -3,8 +3,8 @@
     folderId: "1cdeQHSiNUmP2srahUucPLqR7k6KKrmJO",
     filename:
       "evidence_" + (appsmith.store.form_id || "tmp") + "_" +
-      (FilePickerEvidence.files?.[0]?.name || "evidence.pdf"),
-    mimeType: FilePickerEvidence.files?.[0]?.type || "application/pdf",
-    base64: (FilePickerEvidence.files?.[0]?.data || "").replace(/^data:.*;base64,/, "")
+      (FilePickerFinding.files?.[0]?.name || "evidence.pdf"),
+    mimeType: FilePickerFinding.files?.[0]?.type || "application/pdf",
+    base64: (FilePickerFinding.files?.[0]?.data || "").replace(/^data:.*;base64,/, "")
   })
 }}

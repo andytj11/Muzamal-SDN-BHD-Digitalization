@@ -1,6 +1,6 @@
 export default {
   // Your FilePicker widget name; change if different
-  picker() { return FilePickerEvidence; },
+  picker() { return FilePickerFinding; },
 
   // Decode token from /api/login (your env returns [{response:"<jwt>"}])
   _extractToken(res) {

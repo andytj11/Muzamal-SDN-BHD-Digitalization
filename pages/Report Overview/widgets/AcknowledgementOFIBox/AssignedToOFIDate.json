@@ -41,7 +41,7 @@
   "responsiveBehavior": "fill",
   "rightColumn": 34,
   "shouldTruncate": false,
-  "text": "{{ OverviewData.ofiReplyDate() }}",
+  "text": "{{ OverviewData._dateFromLatest(OverviewData.blueAttention()) }}",
   "textAlign": "LEFT",
   "textColor": "#18181b",
   "topRow": 22,
